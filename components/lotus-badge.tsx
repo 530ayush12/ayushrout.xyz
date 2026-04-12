@@ -10,7 +10,8 @@ export function LotusBadge() {
 
   useEffect(() => {
     setIsHydrated(true)
-    const dismissed = localStorage.getItem("lotus-badge-dismissed")
+    // Use sessionStorage so it persists across page navigations but resets on refresh
+    const dismissed = sessionStorage.getItem("lotus-badge-dismissed")
     if (dismissed === "true") {
       setIsVisible(false)
     }
@@ -18,7 +19,7 @@ export function LotusBadge() {
 
   const handleDismiss = () => {
     setIsVisible(false)
-    localStorage.setItem("lotus-badge-dismissed", "true")
+    sessionStorage.setItem("lotus-badge-dismissed", "true")
   }
 
   if (!isHydrated || !isVisible) return null
