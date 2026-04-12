@@ -10,15 +10,27 @@ export function LotusBadge() {
 
   useEffect(() => {
     setIsHydrated(true)
-    const dismissed = localStorage.getItem("lotus-badge-dismissed")
-    if (dismissed === "true") {
-      setIsVisible(false)
+    
+    // Check if this is a page refresh/reload
+    const navEntries = performance.getEntriesByType("navigation") as PerformanceNavigationTiming[]
+    const isRefresh = navEntries.length > 0 && navEntries[0].type === "reload"
+    
+    // If it's a refresh, clear the dismissed state so badge shows again
+    if (isRefresh) {
+      sessionStorage.removeItem("lotus-badge-dismissed")
+      setIsVisible(true)
+    } else {
+      // Otherwise check if it was dismissed during this session
+      const dismissed = sessionStorage.getItem("lotus-badge-dismissed")
+      if (dismissed === "true") {
+        setIsVisible(false)
+      }
     }
   }, [])
 
   const handleDismiss = () => {
     setIsVisible(false)
-    localStorage.setItem("lotus-badge-dismissed", "true")
+    sessionStorage.setItem("lotus-badge-dismissed", "true")
   }
 
   if (!isHydrated || !isVisible) return null

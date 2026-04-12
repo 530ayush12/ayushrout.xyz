@@ -21,26 +21,9 @@ export const metadata: Metadata = {
   description: 'Personal portfolio of Ayush Rout. Building polished software and crafting digital experiences.',
   generator: 'v0.app',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.jpg',
-        sizes: '32x32',
-        type: 'image/jpeg',
-      },
-      {
-        url: '/icon-light-32x32.jpg',
-        sizes: '16x16',
-        type: 'image/jpeg',
-      },
-    ],
-    apple: [
-      {
-        url: '/apple-icon.jpg',
-        sizes: '180x180',
-        type: 'image/jpeg',
-      },
-    ],
-    shortcut: '/icon-light-32x32.jpg',
+    icon: '/favicon.ico',
+    apple: '/apple-icon.jpg',
+    shortcut: '/favicon.ico',
   },
   appleWebApp: {
     capable: true,
