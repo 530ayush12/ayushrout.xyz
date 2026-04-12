@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Nav } from '@/components/nav'
 import { LotusBadge } from '@/components/lotus-badge'
+import { PasskeyGateway } from '@/components/passkey-gateway'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -46,20 +47,20 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-background">
       <body className="font-sans antialiased">
-        {/* Nav hidden while site is temporarily down */}
-        {/* <Nav /> */}
-        <main className="mx-auto max-w-2xl px-6 pb-16 pt-8">
-          {children}
-        </main>
-        {/* Footer hidden while site is temporarily down */}
-        {/* <footer className="border-t border-border">
-          <div className="mx-auto max-w-2xl px-6 py-8">
-            <p className="text-xs text-muted-foreground">
-              built by ayush rout
-            </p>
-          </div>
-        </footer> */}
-        <LotusBadge />
+        <PasskeyGateway>
+          <Nav />
+          <main className="mx-auto max-w-2xl px-6 pb-16 pt-8">
+            {children}
+          </main>
+          <footer className="border-t border-border">
+            <div className="mx-auto max-w-2xl px-6 py-8">
+              <p className="text-xs text-muted-foreground">
+                built by ayush rout
+              </p>
+            </div>
+          </footer>
+          <LotusBadge />
+        </PasskeyGateway>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
