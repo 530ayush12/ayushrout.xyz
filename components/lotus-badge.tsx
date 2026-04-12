@@ -57,15 +57,16 @@ function LotusIcon({ className }: { className?: string }) {
       className={className}
       aria-hidden="true"
     >
-      <path
-        d="M12 4C12 4 9 8 9 12C9 16 12 20 12 20C12 20 15 16 15 12C15 8 12 4 12 4Z"
-        fill="#ec4899"
-      />
-      <path
-        d="M12 7C12 7 7 9 7 12C7 15 12 17 12 17C12 17 17 15 17 12C17 9 12 7 12 7Z"
-        fill="#f472b6"
-      />
-      <circle cx="12" cy="12" r="2" fill="#fdf2f8" />
+      {/* Center petal */}
+      <ellipse cx="12" cy="10" rx="3" ry="6" fill="#f472b6" />
+      {/* Left petal */}
+      <ellipse cx="8" cy="12" rx="2.5" ry="5" fill="#ec4899" transform="rotate(-25 8 12)" />
+      {/* Right petal */}
+      <ellipse cx="16" cy="12" rx="2.5" ry="5" fill="#ec4899" transform="rotate(25 16 12)" />
+      {/* Outer left petal */}
+      <ellipse cx="5.5" cy="13" rx="2" ry="4" fill="#f9a8d4" transform="rotate(-45 5.5 13)" />
+      {/* Outer right petal */}
+      <ellipse cx="18.5" cy="13" rx="2" ry="4" fill="#f9a8d4" transform="rotate(45 18.5 13)" />
     </svg>
   )
 }
