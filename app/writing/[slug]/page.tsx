@@ -113,6 +113,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           back to writing
         </Link>
 
+        <p className="mb-6 text-xs uppercase tracking-widest text-muted-foreground">
+          01 / article
+        </p>
+
         <h1 className="mb-3 text-2xl font-light tracking-tight text-foreground md:text-3xl">
           {post.title}
         </h1>
@@ -120,10 +124,15 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         <time className="text-sm text-muted-foreground">{post.date}</time>
       </header>
 
-      <div
-        className="prose-custom space-y-5 text-base leading-relaxed text-muted-foreground [&>p]:first:mt-0"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
+      <section>
+        <p className="mb-6 text-xs uppercase tracking-widest text-muted-foreground">
+          02 / content
+        </p>
+        <div
+          className="prose-custom space-y-5 text-base leading-relaxed text-muted-foreground [&>p]:first:mt-0"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
+      </section>
     </article>
   );
 }

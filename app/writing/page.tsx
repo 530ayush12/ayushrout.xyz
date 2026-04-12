@@ -44,7 +44,7 @@ export default function WritingPage() {
     <div className="space-y-16">
       <section>
         <p className="mb-8 text-xs uppercase tracking-widest text-muted-foreground">
-          writing
+          01 / overview
         </p>
 
         <h1 className="mb-4 text-2xl font-light tracking-tight text-foreground md:text-3xl">
@@ -57,6 +57,9 @@ export default function WritingPage() {
       </section>
 
       <section className="space-y-1">
+        <p className="mb-6 text-xs uppercase tracking-widest text-muted-foreground">
+          02 / articles
+        </p>
         {posts.map((post) => (
           <Link
             key={post.slug}

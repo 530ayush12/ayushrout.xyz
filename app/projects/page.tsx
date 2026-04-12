@@ -50,7 +50,7 @@ export default function ProjectsPage() {
     <div className="space-y-16">
       <section>
         <p className="mb-8 text-xs uppercase tracking-widest text-muted-foreground">
-          projects
+          01 / overview
         </p>
 
         <h1 className="mb-4 text-2xl font-light tracking-tight text-foreground md:text-3xl">
@@ -63,6 +63,9 @@ export default function ProjectsPage() {
       </section>
 
       <section className="space-y-10">
+        <p className="text-xs uppercase tracking-widest text-muted-foreground">
+          02 / projects
+        </p>
         {projects.map((project, index) => (
           <Link
             key={index}
