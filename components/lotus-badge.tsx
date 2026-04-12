@@ -10,10 +10,21 @@ export function LotusBadge() {
 
   useEffect(() => {
     setIsHydrated(true)
-    // Use sessionStorage so it persists across page navigations but resets on refresh
-    const dismissed = sessionStorage.getItem("lotus-badge-dismissed")
-    if (dismissed === "true") {
-      setIsVisible(false)
+    
+    // Check if this is a page refresh/reload
+    const navEntries = performance.getEntriesByType("navigation") as PerformanceNavigationTiming[]
+    const isRefresh = navEntries.length > 0 && navEntries[0].type === "reload"
+    
+    // If it's a refresh, clear the dismissed state so badge shows again
+    if (isRefresh) {
+      sessionStorage.removeItem("lotus-badge-dismissed")
+      setIsVisible(true)
+    } else {
+      // Otherwise check if it was dismissed during this session
+      const dismissed = sessionStorage.getItem("lotus-badge-dismissed")
+      if (dismissed === "true") {
+        setIsVisible(false)
+      }
     }
   }, [])
 
