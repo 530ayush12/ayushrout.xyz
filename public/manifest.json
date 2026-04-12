@@ -8,14 +8,15 @@
   "theme_color": "#f5f5f5",
   "icons": [
     {
-      "src": "/icon-light-32x32.jpg",
+      "src": "/favicon.ico",
       "sizes": "32x32",
-      "type": "image/jpeg"
+      "type": "image/x-icon"
     },
     {
       "src": "/apple-icon.jpg",
       "sizes": "180x180",
-      "type": "image/jpeg"
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     }
   ]
 }
