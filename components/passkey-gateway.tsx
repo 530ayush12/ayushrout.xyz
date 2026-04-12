@@ -1,28 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const CORRECT_PASSWORD = "ayushroutblog";
-const STORAGE_KEY = "ayushrout-access";
 
 export function PasskeyGateway({ children }: { children: React.ReactNode }) {
   const [password, setPassword] = useState("");
   const [isUnlocked, setIsUnlocked] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [shake, setShake] = useState(false);
-
-  useEffect(() => {
-    const hasAccess = localStorage.getItem(STORAGE_KEY);
-    if (hasAccess === "true") {
-      setIsUnlocked(true);
-    }
-    setIsLoading(false);
-  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === CORRECT_PASSWORD) {
-      localStorage.setItem(STORAGE_KEY, "true");
       setIsUnlocked(true);
     } else {
       setShake(true);
@@ -30,14 +19,6 @@ export function PasskeyGateway({ children }: { children: React.ReactNode }) {
       setPassword("");
     }
   };
-
-  if (isLoading) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-background">
-        <div className="h-1 w-8 animate-pulse rounded-full bg-foreground/20" />
-      </div>
-    );
-  }
 
   if (isUnlocked) {
     return <>{children}</>;
