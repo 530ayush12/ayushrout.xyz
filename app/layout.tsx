@@ -24,15 +24,30 @@ export const metadata: Metadata = {
     icon: [
       {
         url: '/icon-light-32x32.jpg',
-        media: '(prefers-color-scheme: light)',
+        sizes: '32x32',
+        type: 'image/jpeg',
       },
       {
-        url: '/icon-dark-32x32.jpg',
-        media: '(prefers-color-scheme: dark)',
+        url: '/icon-light-32x32.jpg',
+        sizes: '16x16',
+        type: 'image/jpeg',
       },
     ],
-    apple: '/apple-icon.jpg',
+    apple: [
+      {
+        url: '/apple-icon.jpg',
+        sizes: '180x180',
+        type: 'image/jpeg',
+      },
+    ],
+    shortcut: '/icon-light-32x32.jpg',
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Ayush Rout',
+  },
+  manifest: '/manifest.json',
 }
 
 export default function RootLayout({
