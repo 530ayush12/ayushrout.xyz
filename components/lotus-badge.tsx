@@ -57,15 +57,15 @@ function LotusIcon({ className }: { className?: string }) {
       className={className}
       aria-hidden="true"
     >
-      <circle cx="12" cy="12" r="10" fill="#f472b6" />
+      <circle cx="12" cy="12" r="10" fill="#6b7280" />
       <path
         d="M12 6c-1.5 2-2.5 4-2.5 6s1 4 2.5 6c1.5-2 2.5-4 2.5-6s-1-4-2.5-6z"
-        fill="#fdf2f4"
+        fill="#f5f5f5"
         opacity="0.9"
       />
       <path
         d="M6 12c2-1.5 4-2.5 6-2.5s4 1 6 2.5c-2 1.5-4 2.5-6 2.5s-4-1-6-2.5z"
-        fill="#fdf2f4"
+        fill="#f5f5f5"
         opacity="0.7"
       />
     </svg>
