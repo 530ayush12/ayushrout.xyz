@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const CORRECT_PASSWORD = "ayushroutblog";
+const CORRECT_PASSWORD = "Ayush@2012USA";
 
 export function PasskeyGateway({ children }: { children: React.ReactNode }) {
   const [password, setPassword] = useState("");
