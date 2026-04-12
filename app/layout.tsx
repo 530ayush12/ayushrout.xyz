@@ -46,17 +46,19 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-background">
       <body className="font-sans antialiased">
-        <Nav />
+        {/* Nav hidden while site is temporarily down */}
+        {/* <Nav /> */}
         <main className="mx-auto max-w-2xl px-6 pb-16 pt-8">
           {children}
         </main>
-        <footer className="border-t border-border">
+        {/* Footer hidden while site is temporarily down */}
+        {/* <footer className="border-t border-border">
           <div className="mx-auto max-w-2xl px-6 py-8">
             <p className="text-xs text-muted-foreground">
               built by ayush rout
             </p>
           </div>
-        </footer>
+        </footer> */}
         <LotusBadge />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

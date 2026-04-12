@@ -1,166 +1,26 @@
-import Link from "next/link";
-import { Github, Twitter, Linkedin, Mail, ArrowUpRight } from "lucide-react";
-
-const socialLinks = [
-  { icon: Github, href: "https://github.com", label: "github" },
-  { icon: Twitter, href: "https://twitter.com", label: "twitter" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "linkedin" },
-  { icon: Mail, href: "mailto:hello@ayushrout.xyz", label: "email" },
-];
-
-const featuredProjects = [
-  {
-    title: "project one",
-    description: "a modern web application built with next.js and typescript.",
-    link: "/projects",
-  },
-  {
-    title: "project two",
-    description: "an open-source design system for building beautiful interfaces.",
-    link: "/projects",
-  },
-];
-
-const recentWriting = [
-  {
-    title: "on building products that matter",
-    date: "2024",
-    slug: "building-products",
-  },
-  {
-    title: "the art of simplicity in design",
-    date: "2024",
-    slug: "simplicity",
-  },
-];
-
-export default function Home() {
+export default function ComingSoon() {
   return (
-    <div className="space-y-20">
-      {/* Intro */}
-      <section>
-        <p className="mb-8 text-xs uppercase tracking-widest text-muted-foreground">
-          01 / introduction
-        </p>
-
-        <h1 className="mb-6 text-2xl font-light tracking-tight text-foreground md:text-3xl">
-          hello.
-        </h1>
-
-        <div className="space-y-5 text-base leading-relaxed text-muted-foreground">
-          <p>
-            i am <span className="text-foreground">ayush</span>. i am a developer and designer building software that scales.
-          </p>
-          <p>
-            i believe in shipping fast, iterating relentlessly, and creating tools that feel crafted. quiet, intentional, and powerful.
-          </p>
-          <p>
-            currently building things on the web — exploring the intersection of design and engineering.
-          </p>
-        </div>
-
-        <div className="mt-10 flex items-center gap-6">
-          {socialLinks.map(({ icon: Icon, href, label }) => (
-            <Link
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <Icon className="h-4 w-4" />
-              <span className="hidden sm:inline">{label}</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Featured Projects */}
-      <section>
-        <div className="mb-8 flex items-center justify-between">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground">
-            02 / projects
-          </p>
-          <Link
-            href="/projects"
-            className="text-xs text-muted-foreground transition-colors hover:text-foreground"
-          >
-            view all
-          </Link>
-        </div>
-
-        <div className="space-y-6">
-          {featuredProjects.map((project, index) => (
-            <Link
-              key={index}
-              href={project.link}
-              className="group block"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="text-foreground transition-colors group-hover:text-primary">
-                    {project.title}
-                  </h3>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {project.description}
-                  </p>
-                </div>
-                <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground opacity-0 transition-all group-hover:opacity-100" />
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Recent Writing */}
-      <section>
-        <div className="mb-8 flex items-center justify-between">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground">
-            03 / writing
-          </p>
-          <Link
-            href="/writing"
-            className="text-xs text-muted-foreground transition-colors hover:text-foreground"
-          >
-            view all
-          </Link>
-        </div>
-
-        <div className="space-y-4">
-          {recentWriting.map((article, index) => (
-            <Link
-              key={index}
-              href={`/writing/${article.slug}`}
-              className="group flex items-center justify-between"
-            >
-              <span className="text-foreground transition-colors group-hover:text-primary">
-                {article.title}
-              </span>
-              <span className="text-xs text-muted-foreground">
-                {article.date}
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section>
-        <p className="mb-8 text-xs uppercase tracking-widest text-muted-foreground">
-          04 / contact
-        </p>
-
-        <p className="text-muted-foreground">
-          want to work together?{" "}
-          <Link
-            href="mailto:hello@ayushrout.xyz"
-            className="text-foreground underline decoration-primary underline-offset-4 transition-colors hover:text-primary"
-          >
-            reach out
-          </Link>
-          .
-        </p>
-      </section>
+    <div className="flex min-h-[70vh] flex-col items-center justify-center text-center">
+      <p className="mb-6 text-xs uppercase tracking-widest text-muted-foreground">
+        coming soon
+      </p>
+      
+      <h1 className="mb-4 text-3xl font-light tracking-tight text-foreground md:text-4xl">
+        ayush rout
+      </h1>
+      
+      <p className="max-w-md text-base leading-relaxed text-muted-foreground">
+        something new is in the works. check back soon.
+      </p>
+      
+      <div className="mt-10">
+        <a 
+          href="mailto:hello@ayushrout.xyz"
+          className="text-sm text-foreground underline decoration-primary underline-offset-4 transition-colors hover:text-primary"
+        >
+          get in touch
+        </a>
+      </div>
     </div>
   );
 }
