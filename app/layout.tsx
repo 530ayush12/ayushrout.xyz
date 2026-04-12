@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { Nav } from '@/components/nav'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -44,7 +45,17 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-background">
       <body className="font-sans antialiased">
-        {children}
+        <Nav />
+        <main className="mx-auto max-w-2xl px-6 pb-16 pt-8">
+          {children}
+        </main>
+        <footer className="border-t border-border">
+          <div className="mx-auto max-w-2xl px-6 py-8">
+            <p className="text-xs text-muted-foreground">
+              built by ayush rout
+            </p>
+          </div>
+        </footer>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
