@@ -17,7 +17,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'Ayush Rout - Developer & Designer',
+  title: 'Ayush Rout — Profile',
   description: 'Personal portfolio of Ayush Rout. Building polished software and crafting digital experiences.',
   generator: 'v0.app',
   icons: {
