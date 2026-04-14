@@ -20,21 +20,21 @@ const projects = [
     description: "an intelligent math learning app designed to enhance cognitive abilities and sharpen mental skills. features adaptive problem-solving, progress tracking, and personalized learning paths. developed by sagarika swain.",
     tech: ["ios", "swift", "education"],
     link: "https://apps.apple.com/app/mathiq",
-    year: "2024",
+    year: "dec 2025",
   },
   {
     title: "sci core",
     description: "a comprehensive science education platform offering interactive lessons, experiments, and quizzes across physics, chemistry, and biology. built to make science accessible and engaging. developed by sagarika swain.",
     tech: ["ios", "swift", "education"],
     link: "https://apps.apple.com/app/sci-core",
-    year: "2024",
+    year: "jan 2026",
   },
   {
     title: "quizai+",
     description: "an ai-powered quiz and study companion that generates personalized questions, flashcards, and study materials. helps students learn smarter with adaptive testing. developed by sagarika swain.",
     tech: ["ios", "swift", "ai"],
     link: "https://apps.apple.com/app/quizai",
-    year: "2023",
+    year: "feb 2026",
   },
 ];
 
