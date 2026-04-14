@@ -19,7 +19,7 @@ export default function AboutPage() {
 
         <div className="space-y-5 text-base leading-relaxed text-muted-foreground">
           <p>
-            i am <span className="text-foreground">ayush rout</span>, a developer and designer based in india. i build software that scales and create digital experiences that feel crafted.
+            i am <span className="text-foreground">ayush rout</span>, a developer and designer based in the united states. i build software that scales and create digital experiences that feel crafted.
           </p>
           <p>
             my approach to building products is rooted in simplicity. i believe the best tools are the ones that get out of your way — quiet, intentional, and powerful.
