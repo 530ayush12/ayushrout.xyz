@@ -7,12 +7,16 @@ const CORRECT_PASSWORD = "Ayush@2012USA";
 export function PasskeyGateway({ children }: { children: React.ReactNode }) {
   const [password, setPassword] = useState("");
   const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [shake, setShake] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === CORRECT_PASSWORD) {
-      setIsUnlocked(true);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setIsUnlocked(true);
+      }, 400);
     } else {
       setShake(true);
       setTimeout(() => setShake(false), 500);
@@ -21,11 +25,15 @@ export function PasskeyGateway({ children }: { children: React.ReactNode }) {
   };
 
   if (isUnlocked) {
-    return <>{children}</>;
+    return (
+      <div className="animate-fade-in">
+        {children}
+      </div>
+    );
   }
 
   return (
-    <div className="fixed inset-0 flex flex-col items-center justify-center bg-background px-6">
+    <div className={`fixed inset-0 flex flex-col items-center justify-center bg-background px-6 transition-opacity duration-400 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
       <div className="w-full max-w-xs">
         <h1 className="mb-2 text-center text-lg font-medium text-foreground">
           ayush rout

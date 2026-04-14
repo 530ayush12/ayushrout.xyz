@@ -29,10 +29,10 @@ const recentWriting = [
 
 export default function Home() {
   return (
-    <div className="space-y-16">
+    <div className="space-y-20">
       {/* intro */}
-      <section className="space-y-6">
-        <p className="text-sm uppercase tracking-wider text-muted-foreground">
+      <section className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <p className="text-xs uppercase tracking-widest text-muted-foreground">
           01 / introduction
         </p>
         <div className="space-y-4">
@@ -51,8 +51,8 @@ export default function Home() {
       </section>
 
       {/* projects */}
-      <section className="space-y-6">
-        <p className="text-sm uppercase tracking-wider text-muted-foreground">
+      <section className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-100">
+        <p className="text-xs uppercase tracking-widest text-muted-foreground">
           02 / projects
         </p>
         <div className="space-y-4">
@@ -84,8 +84,8 @@ export default function Home() {
       </section>
 
       {/* writing */}
-      <section className="space-y-6">
-        <p className="text-sm uppercase tracking-wider text-muted-foreground">
+      <section className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200">
+        <p className="text-xs uppercase tracking-widest text-muted-foreground">
           03 / writing
         </p>
         <div className="space-y-4">
@@ -112,8 +112,8 @@ export default function Home() {
       </section>
 
       {/* connect */}
-      <section className="space-y-6">
-        <p className="text-sm uppercase tracking-wider text-muted-foreground">
+      <section className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
+        <p className="text-xs uppercase tracking-widest text-muted-foreground">
           04 / connect
         </p>
         <div className="flex flex-wrap gap-4">
