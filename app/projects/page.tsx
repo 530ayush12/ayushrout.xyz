@@ -9,6 +9,13 @@ export const metadata: Metadata = {
 
 const projects = [
   {
+    title: "lotus",
+    description: "the world's best ai designer. lotus is an ai-powered design tool that helps you create stunning websites, apps, and interfaces in seconds.",
+    tech: ["ai", "design", "next.js"],
+    link: "https://trylotus.dev",
+    year: "2026",
+  },
+  {
     title: "project one",
     description: "a modern web application built with next.js and typescript. features real-time collaboration, auth, and a custom design system.",
     tech: ["next.js", "typescript", "tailwind"],
