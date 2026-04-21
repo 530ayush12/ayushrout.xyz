@@ -6,19 +6,20 @@ import { LotusBadge } from '@/components/lotus-badge'
 import { PasskeyGateway } from '@/components/passkey-gateway'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
-const _cormorant = Cormorant_Garamond({ 
-  subsets: ["latin"], 
-  weight: ["400", "500", "600"],
-});
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' })
+const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono' })
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-serif',
+})
 
 export const viewport: Viewport = {
-  width: "device-width",
+  width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
-  themeColor: "#f5f5f5",
-};
+  themeColor: '#f5f5f5',
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ayushrout.xyz'),
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/ayush.png', // ✅ LOCAL FILE (BEST PRACTICE)
+        url: '/ayush.png', // MUST be in /public
         width: 1200,
         height: 630,
         alt: 'ayush rout preview',
@@ -52,15 +53,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'ayush rout',
     description: 'portfolio, blog, and builds',
-    images: ['/ayush.png'], // ✅ SAME LOCAL FILE
-  },
-}
-
-  twitter: {
-    card: 'summary_large_image',
-    title: 'ayush rout',
-    description: 'portfolio, blog, and builds',
-    images: ['https://i.imgur.com/gernMuE.png'], // ✅ SAME DIRECT LINK
+    images: ['/ayush.png'], // same file
   },
 }
 
@@ -70,22 +63,32 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="bg-background">
+    <html
+      lang="en"
+      className={`${geist.variable} ${geistMono.variable} ${cormorant.variable} bg-background`}
+    >
       <body className="font-sans antialiased">
         <PasskeyGateway>
           <div className="min-h-screen">
             <header className="fixed left-0 top-0 z-50 p-8 md:p-12">
-              <a href="/" className="font-mono text-sm tracking-wider text-foreground transition-opacity hover:opacity-60">
+              <a
+                href="/"
+                className="font-mono text-sm tracking-wider text-foreground transition-opacity hover:opacity-60"
+              >
                 A. ROUT
               </a>
             </header>
+
             <SideNav />
+
             <main className="animate-page-in mx-auto max-w-3xl px-8 pb-24 pt-32 md:px-16 md:pr-48">
               {children}
             </main>
           </div>
+
           <LotusBadge />
         </PasskeyGateway>
+
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
