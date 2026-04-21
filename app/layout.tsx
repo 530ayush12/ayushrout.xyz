@@ -37,22 +37,22 @@ export const metadata: Metadata = {
     description: 'portfolio, blog, and builds',
     url: 'https://ayushrout.xyz',
     siteName: 'ayush rout',
+    type: 'website',
     images: [
       {
-        url: 'https://imgur.com/a/6K3ERby.png', // 🔥 PUT DIRECT LINK HERE
+        url: 'https://i.imgur.com/gernMuE.png', // ✅ FIXED (DIRECT LINK)
         width: 1200,
         height: 630,
         alt: 'ayush rout preview',
       },
     ],
-    type: 'website',
   },
 
   twitter: {
     card: 'summary_large_image',
     title: 'ayush rout',
     description: 'portfolio, blog, and builds',
-    images: ['https://imgur.com/a/6K3ERby.png'], // same link
+    images: ['https://i.imgur.com/gernMuE.png'], // ✅ SAME DIRECT LINK
   },
 }
 
