@@ -21,27 +21,46 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'Ayush Rout — Profile',
-  description: 'Personal portfolio of Ayush Rout. Building polished software and crafting digital experiences.',
-  generator: 'v0.app',
+  metadataBase: new URL('https://ayushrout.xyz'),
+
+  title: 'ayush rout',
+  description: 'portfolio, blog, and builds',
+
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-icon.jpg',
     shortcut: '/favicon.ico',
   },
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: 'default',
-    title: 'Ayush Rout',
+
+  openGraph: {
+    title: 'ayush rout',
+    description: 'portfolio, blog, and builds',
+    url: 'https://ayushrout.xyz',
+    siteName: 'ayush rout',
+    images: [
+      {
+        url: 'https://imgur.com/a/6K3ERby.png', // 🔥 PUT DIRECT LINK HERE
+        width: 1200,
+        height: 630,
+        alt: 'ayush rout preview',
+      },
+    ],
+    type: 'website',
   },
-  manifest: '/manifest.json',
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ayush rout',
+    description: 'portfolio, blog, and builds',
+    images: ['https://imgur.com/a/6K3ERby.png'], // same link
+  },
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
     <html lang="en" className="bg-background">
       <body className="font-sans antialiased">
