@@ -21,26 +21,26 @@ export default function ContactPage() {
 
           <div className="space-y-4 font-mono text-sm">
             <Link 
-              href="mailto:ayushrout@example.com"
+              href="mailto:ayushrout.ar@gmail.com"
               className="block text-foreground transition-opacity hover:opacity-60"
             >
-              ayushrout@example.com
+              ayushrout.ar@gmail.com
             </Link>
             <Link 
-              href="https://x.com/ayushrout"
+              href="https://x.com/ayushrout2012"
               target="_blank"
               rel="noopener noreferrer"
               className="block text-foreground transition-opacity hover:opacity-60"
             >
-              x.com/ayushrout
+              x.com/ayushrout2012
             </Link>
             <Link 
-              href="https://github.com/ayushrout"
+              href="https://github.com/ayushrout12"
               target="_blank"
               rel="noopener noreferrer"
               className="block text-foreground transition-opacity hover:opacity-60"
             >
-              github.com/ayushrout
+              github.com/ayushrout12
             </Link>
           </div>
         </div>
