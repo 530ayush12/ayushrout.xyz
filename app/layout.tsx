@@ -6,19 +6,18 @@ import { LotusBadge } from '@/components/lotus-badge'
 import { PasskeyGateway } from '@/components/passkey-gateway'
 import './globals.css'
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-sans' })
-const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono' })
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-serif',
+const geist = Geist({ subsets: ["latin"] })
+const geistMono = Geist_Mono({ subsets: ["latin"] })
+const cormorant = Cormorant_Garamond({ 
+  subsets: ["latin"], 
+  weight: ["400", "500", "600"],
 })
 
 export const viewport: Viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-  themeColor: '#f5f5f5',
+  themeColor: "#f5f5f5",
 }
 
 export const metadata: Metadata = {
@@ -29,8 +28,8 @@ export const metadata: Metadata = {
 
   icons: {
     icon: '/favicon.ico',
-    apple: '/apple-icon.jpg',
     shortcut: '/favicon.ico',
+    apple: '/apple-icon.jpg',
   },
 
   openGraph: {
@@ -41,7 +40,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/ayush.png', // MUST be in /public
+        url: 'https://ayushrout.xyz/ayush.png?v=2', // ✅ LOCAL + CACHE FIX
         width: 1200,
         height: 630,
         alt: 'ayush rout preview',
@@ -53,7 +52,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'ayush rout',
     description: 'portfolio, blog, and builds',
-    images: ['/ayush.png'], // same file
+    images: ['https://ayushrout.xyz/ayush.png?v=2'], // ✅ SAME IMAGE
   },
 }
 
