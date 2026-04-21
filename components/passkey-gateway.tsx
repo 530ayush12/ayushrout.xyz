@@ -33,12 +33,12 @@ export function PasskeyGateway({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className={`fixed inset-0 flex flex-col items-center justify-center bg-background px-6 transition-opacity duration-400 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
-      <div className="w-full max-w-xs">
-        <h1 className="mb-2 text-center text-lg font-medium text-foreground">
+    <div className={`fixed inset-0 flex flex-col items-center justify-center bg-[#f5f5f5] px-6 transition-opacity duration-400 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
+      <div className="w-full max-w-sm">
+        <h1 className="mb-3 text-center font-serif text-xl font-normal text-[#1a1a1a]">
           ayush rout
         </h1>
-        <p className="mb-8 text-center text-sm text-muted-foreground">
+        <p className="mb-8 text-center text-sm font-light text-[#666666]">
           enter password to continue
         </p>
 
@@ -54,7 +54,7 @@ export function PasskeyGateway({ children }: { children: React.ReactNode }) {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="password"
               autoFocus
-              className="w-full rounded-lg border border-border bg-card px-4 py-3 text-center text-base tracking-widest text-foreground placeholder:text-muted-foreground/50 placeholder:tracking-normal focus:border-foreground/30 focus:outline-none focus:ring-0"
+              className="w-full rounded-xl border-0 bg-white px-6 py-4 text-center text-base tracking-widest text-[#1a1a1a] shadow-sm placeholder:text-[#999999] placeholder:tracking-normal focus:outline-none focus:ring-2 focus:ring-[#1a1a1a]/10"
               style={{
                 WebkitTextSecurity: "disc",
               }}
@@ -62,7 +62,7 @@ export function PasskeyGateway({ children }: { children: React.ReactNode }) {
           </div>
           <button
             type="submit"
-            className="mt-4 w-full rounded-lg bg-foreground py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+            className="mt-4 w-full rounded-xl bg-[#1a1a1a] py-4 text-sm font-medium text-white transition-opacity hover:opacity-90"
           >
             enter
           </button>
