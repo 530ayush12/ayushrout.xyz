@@ -1,144 +1,35 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-
-const featuredProjects = [
-  {
-    title: "project one",
-    description: "a brief description of what this project does",
-    href: "/projects",
-  },
-  {
-    title: "project two",
-    description: "another interesting project worth sharing",
-    href: "/projects",
-  },
-];
-
-const recentWriting = [
-  {
-    title: "thoughts on building in public",
-    date: "2024",
-    slug: "building-in-public",
-  },
-  {
-    title: "designing for simplicity",
-    date: "2024",
-    slug: "designing-for-simplicity",
-  },
-];
 
 export default function Home() {
   return (
-    <div className="space-y-20">
+    <div className="space-y-16">
       {/* intro */}
-      <section className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-        <p className="text-xs uppercase tracking-widest text-muted-foreground">
+      <section className="space-y-12">
+        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
           01 / introduction
         </p>
-        <div className="space-y-4">
-          <h1 className="text-2xl font-medium text-foreground">
-            ayush rout
+        
+        <div className="space-y-8">
+          <h1 className="font-serif text-3xl font-normal text-foreground md:text-4xl">
+            hello.
           </h1>
-          <p className="leading-relaxed text-muted-foreground">
-            building things on the internet. i believe in shipping fast,
-            iterating relentlessly, and creating software that feels good to
-            use.
-          </p>
-          <p className="leading-relaxed text-muted-foreground">
-            currently exploring the intersection of design and engineering.
-          </p>
-        </div>
-      </section>
-
-      {/* projects */}
-      <section className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-100">
-        <p className="text-xs uppercase tracking-widest text-muted-foreground">
-          02 / projects
-        </p>
-        <div className="space-y-4">
-          {featuredProjects.map((project) => (
-            <Link
-              key={project.title}
-              href={project.href}
-              className="group flex items-start justify-between border-b border-border pb-4 transition-colors hover:border-foreground/30"
-            >
-              <div className="space-y-1">
-                <h3 className="font-medium text-foreground group-hover:text-primary">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  {project.description}
-                </p>
-              </div>
-              <ArrowUpRight className="mt-1 h-4 w-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+          
+          <div className="space-y-6 text-xl leading-relaxed text-foreground md:text-2xl">
+            <p>
+              i am ayush. i am a 14-year-old developer and founder building software that scales.
+            </p>
+            <p>
+              i believe in shipping fast, iterating relentlessly, and creating tools that feel crafted. quiet, intentional, and powerful.
+            </p>
+          </div>
+          
+          <p className="font-serif text-lg italic text-muted-foreground md:text-xl">
+            currently building{" "}
+            <Link href="https://trylotus.dev" target="_blank" className="text-foreground underline decoration-muted-foreground/30 underline-offset-4 transition-colors hover:decoration-foreground">
+              trylotus.dev
             </Link>
-          ))}
-        </div>
-        <Link
-          href="/projects"
-          className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          view all projects
-          <ArrowUpRight className="h-3 w-3" />
-        </Link>
-      </section>
-
-      {/* writing */}
-      <section className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200">
-        <p className="text-xs uppercase tracking-widest text-muted-foreground">
-          03 / writing
-        </p>
-        <div className="space-y-4">
-          {recentWriting.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/writing/${post.slug}`}
-              className="group flex items-center justify-between border-b border-border pb-4 transition-colors hover:border-foreground/30"
-            >
-              <span className="font-medium text-foreground group-hover:text-primary">
-                {post.title}
-              </span>
-              <span className="text-sm text-muted-foreground">{post.date}</span>
-            </Link>
-          ))}
-        </div>
-        <Link
-          href="/writing"
-          className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          view all posts
-          <ArrowUpRight className="h-3 w-3" />
-        </Link>
-      </section>
-
-      {/* connect */}
-      <section className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
-        <p className="text-xs uppercase tracking-widest text-muted-foreground">
-          04 / connect
-        </p>
-        <div className="flex flex-wrap gap-4">
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            twitter
-          </a>
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            github
-          </a>
-          <a
-            href="mailto:hello@ayushrout.xyz"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            email
-          </a>
+            {" "}— an ai design tool that builds websites from a simple prompt.
+          </p>
         </div>
       </section>
     </div>

@@ -1,13 +1,17 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, Geist_Mono, Cormorant_Garamond } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import { Nav } from '@/components/nav'
+import { SideNav } from '@/components/side-nav'
 import { LotusBadge } from '@/components/lotus-badge'
 import { PasskeyGateway } from '@/components/passkey-gateway'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const _cormorant = Cormorant_Garamond({ 
+  subsets: ["latin"], 
+  weight: ["400", "500", "600"],
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -42,17 +46,17 @@ export default function RootLayout({
     <html lang="en" className="bg-background">
       <body className="font-sans antialiased">
         <PasskeyGateway>
-          <Nav />
-          <main className="mx-auto max-w-2xl px-6 pb-16 pt-8">
-            {children}
-          </main>
-          <footer className="border-t border-border">
-            <div className="mx-auto max-w-2xl px-6 py-8">
-              <p className="text-xs text-muted-foreground">
-                built by ayush rout
-              </p>
-            </div>
-          </footer>
+          <div className="min-h-screen">
+            <header className="fixed left-0 top-0 z-50 p-8 md:p-12">
+              <a href="/" className="font-mono text-sm tracking-wider text-foreground transition-opacity hover:opacity-60">
+                A. ROUT
+              </a>
+            </header>
+            <SideNav />
+            <main className="animate-page-in mx-auto max-w-3xl px-8 pb-24 pt-32 md:px-16 md:pr-48">
+              {children}
+            </main>
+          </div>
           <LotusBadge />
         </PasskeyGateway>
         {process.env.NODE_ENV === 'production' && <Analytics />}
