@@ -1,19 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const CORRECT_PASSWORD = "Ayush@2012USA";
+const AUTH_KEY = "ayushrout-authenticated";
 
 export function PasskeyGateway({ children }: { children: React.ReactNode }) {
   const [password, setPassword] = useState("");
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [shake, setShake] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Check if this is a page refresh or navigation
+    const navEntries = performance.getEntriesByType("navigation") as PerformanceNavigationTiming[];
+    const isRefresh = navEntries.length > 0 && navEntries[0].type === "reload";
+    
+    if (isRefresh) {
+      // Clear auth on refresh
+      sessionStorage.removeItem(AUTH_KEY);
+      setIsUnlocked(false);
+    } else {
+      // Check if already authenticated in this session (for navigation)
+      const isAuthenticated = sessionStorage.getItem(AUTH_KEY) === "true";
+      if (isAuthenticated) {
+        setIsUnlocked(true);
+      }
+    }
+    setIsLoading(false);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === CORRECT_PASSWORD) {
       setIsTransitioning(true);
+      sessionStorage.setItem(AUTH_KEY, "true");
       setTimeout(() => {
         setIsUnlocked(true);
       }, 400);
@@ -23,6 +45,12 @@ export function PasskeyGateway({ children }: { children: React.ReactNode }) {
       setPassword("");
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 bg-[#f5f5f5]" />
+    );
+  }
 
   if (isUnlocked) {
     return (
