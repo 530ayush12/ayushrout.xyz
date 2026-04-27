@@ -28,7 +28,7 @@ const projects = [
   {
     title: "scicore",
     description: "learn physics, chemistry, and biology through quick lessons and hands-on quizzes.",
-    link: "https://apps.apple.com/app/scicore",
+    link: "https://apps.apple.com/us/app/scicore/id6757728466",
     year: "2026",
   },
   {
