@@ -34,7 +34,7 @@ const projects = [
   {
     title: "quizai+",
     description: "an ai study buddy that turns your notes into flashcards and quizzes.",
-    link: "https://apps.apple.com/app/quizai",
+    link: "https://apps.apple.com/us/app/quizai/id6759224775",
     year: "2026",
   },
 ];
