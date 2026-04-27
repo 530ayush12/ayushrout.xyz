@@ -15,7 +15,7 @@ const projects = [
   },
   {
     title: "serenequests.com",
-    description: "a travel and adventure platform for discovering unique experiences and destinations.",
+    description: "a simple, calming health guidance app for everyday wellness.",
     link: "https://serenequests.com",
     year: "Now",
   },
