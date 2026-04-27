@@ -20,10 +20,10 @@ const projects = [
     year: "Now",
   },
   {
-    title: "mathiq+",
-    description: "a math app that makes you think. daily problems, timed challenges, and progress tracking.",
-    link: "https://apps.apple.com/us/app/mathiq/id6756983614",
-    year: "2025",
+    title: "quizai+",
+    description: "an ai study buddy that turns your notes into flashcards and quizzes.",
+    link: "https://apps.apple.com/us/app/quizai/id6759224775",
+    year: "2026",
   },
   {
     title: "scicore",
@@ -32,10 +32,10 @@ const projects = [
     year: "2026",
   },
   {
-    title: "quizai+",
-    description: "an ai study buddy that turns your notes into flashcards and quizzes.",
-    link: "https://apps.apple.com/us/app/quizai/id6759224775",
-    year: "2026",
+    title: "mathiq+",
+    description: "a math app that makes you think. daily problems, timed challenges, and progress tracking.",
+    link: "https://apps.apple.com/us/app/mathiq/id6756983614",
+    year: "2025",
   },
 ];
 
