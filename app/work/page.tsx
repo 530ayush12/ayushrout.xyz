@@ -14,6 +14,12 @@ const projects = [
     year: "Now",
   },
   {
+    title: "serenquests.com",
+    description: "a travel and adventure platform for discovering unique experiences and destinations.",
+    link: "https://serenquests.com",
+    year: "Now",
+  },
+  {
     title: "mathiq+",
     description: "a math app that makes you think. daily problems, timed challenges, and progress tracking.",
     link: "https://apps.apple.com/app/mathiq",
