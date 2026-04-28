@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { SideNav } from '@/components/side-nav'
 import { LotusBadge } from '@/components/lotus-badge'
 import { PasskeyGateway } from '@/components/passkey-gateway'
+import { PageTransition } from '@/components/page-transition'
 import './globals.css'
 
 const geist = Geist({ subsets: ["latin"] })
@@ -80,8 +81,10 @@ export default function RootLayout({
 
           <SideNav />
 
-          <main className="animate-page-in mx-auto max-w-3xl px-8 pb-24 pt-32 md:px-16 md:pr-48">
-            {children}
+          <main className="mx-auto max-w-3xl px-8 pb-24 pt-32 md:px-16 md:pr-48">
+            <PageTransition>
+              {children}
+            </PageTransition>
           </main>
         </div>
 
