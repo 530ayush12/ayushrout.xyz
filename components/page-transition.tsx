@@ -6,33 +6,42 @@ import { useEffect, useState, useRef } from "react";
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [displayChildren, setDisplayChildren] = useState(children);
-  const [transitionStage, setTransitionStage] = useState("visible");
-  const isFirstRender = useRef(true);
+  const [isVisible, setIsVisible] = useState(false);
+  const previousPathname = useRef(pathname);
 
+  // Fade in on initial mount
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
-    // Start fade out
-    setTransitionStage("hidden");
-    
     const timeout = setTimeout(() => {
-      // Update content and fade in
-      setDisplayChildren(children);
-      setTransitionStage("visible");
-    }, 150);
-
+      setIsVisible(true);
+    }, 50);
     return () => clearTimeout(timeout);
+  }, []);
+
+  // Handle route changes
+  useEffect(() => {
+    if (previousPathname.current !== pathname) {
+      // Fade out
+      setIsVisible(false);
+      
+      const timeout = setTimeout(() => {
+        // Update content and fade in
+        setDisplayChildren(children);
+        previousPathname.current = pathname;
+        setIsVisible(true);
+      }, 200);
+
+      return () => clearTimeout(timeout);
+    } else {
+      setDisplayChildren(children);
+    }
   }, [pathname, children]);
 
   return (
     <div
-      className={`transition-all duration-300 ease-out ${
-        transitionStage === "visible"
+      className={`transition-all duration-400 ease-out ${
+        isVisible
           ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-4"
+          : "opacity-0 translate-y-5"
       }`}
     >
       {displayChildren}
