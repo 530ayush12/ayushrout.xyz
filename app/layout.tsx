@@ -68,27 +68,28 @@ export default function RootLayout({
       className={`${geist.variable} ${geistMono.variable} ${cormorant.variable} bg-background`}
     >
       <body className="font-sans antialiased">
-        {/* PasskeyGateway temporarily disabled */}
-        <div className="min-h-screen">
-          <header className="fixed left-0 top-0 z-50 p-8 md:p-12">
-            <a
-              href="/"
-              className="font-mono text-sm tracking-wider text-foreground transition-opacity hover:opacity-60"
-            >
-              A. ROUT
-            </a>
-          </header>
+        <PasskeyGateway>
+          <div className="min-h-screen">
+            <header className="fixed left-0 top-0 z-50 p-8 md:p-12">
+              <a
+                href="/"
+                className="font-mono text-sm tracking-wider text-foreground transition-opacity hover:opacity-60"
+              >
+                A. ROUT
+              </a>
+            </header>
 
-          <SideNav />
+            <SideNav />
 
-          <main className="mx-auto max-w-3xl px-8 pb-24 pt-32 md:px-16 md:pr-48">
-            <PageTransition>
-              {children}
-            </PageTransition>
-          </main>
-        </div>
+            <main className="mx-auto max-w-3xl px-8 pb-24 pt-32 md:px-16 md:pr-48">
+              <PageTransition>
+                {children}
+              </PageTransition>
+            </main>
+          </div>
 
-        <LotusBadge />
+          <LotusBadge />
+        </PasskeyGateway>
 
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
