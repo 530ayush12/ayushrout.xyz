@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Star } from "lucide-react";
 
 interface Review {
@@ -12,7 +12,9 @@ interface Review {
   date: string;
 }
 
-const initialReviews: Review[] = [
+const STORAGE_KEY = "ayushrout-reviews";
+
+const defaultReviews: Review[] = [
   {
     id: 1,
     name: "Sarah Chen",
@@ -80,7 +82,7 @@ function StarRating({ rating, interactive = false, onRate }: {
 }
 
 export default function ReviewsPage() {
-  const [reviews, setReviews] = useState<Review[]>(initialReviews);
+  const [reviews, setReviews] = useState<Review[]>(defaultReviews);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -90,8 +92,34 @@ export default function ReviewsPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  const averageRating = reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length;
+  // Load reviews from localStorage on mount
+  useEffect(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        setReviews(parsed);
+      } catch {
+        setReviews(defaultReviews);
+      }
+    }
+    setIsLoaded(true);
+  }, []);
+
+  // Save reviews to localStorage whenever they change
+  useEffect(() => {
+    if (isLoaded) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
+    }
+  }, [reviews, isLoaded]);
+
+  const averageRating = reviews.length > 0 
+    ? reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length 
+    : 0;
+  
+  const totalReviews = reviews.length;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -135,9 +163,13 @@ export default function ReviewsPage() {
         <div className="flex items-center gap-4">
           <StarRating rating={Math.round(averageRating)} />
           <span className="text-sm text-muted-foreground">
-            {averageRating.toFixed(1)} average from {reviews.length} reviews
+            {averageRating.toFixed(1)} average from {totalReviews} {totalReviews === 1 ? "review" : "reviews"}
           </span>
         </div>
+        
+        <p className="mt-4 text-sm text-muted-foreground">
+          {totalReviews} {totalReviews === 1 ? "person has" : "people have"} shared their experience.
+        </p>
       </section>
 
       {/* Add Review Button */}
@@ -237,7 +269,7 @@ export default function ReviewsPage() {
       {/* Reviews List */}
       <section className="space-y-8">
         <p className="text-xs uppercase tracking-widest text-muted-foreground">
-          all reviews
+          all reviews ({totalReviews})
         </p>
         
         <div className="space-y-8">
