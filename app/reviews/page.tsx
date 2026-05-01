@@ -9,53 +9,22 @@ interface Review {
   role: string;
   rating: number;
   content: string;
-  timestamp: number;
+  date: string;
 }
 
 // Changed storage key to reset old cached data
-const STORAGE_KEY = "ayushrout-reviews-v3";
+const STORAGE_KEY = "ayushrout-reviews-v4";
 
-// Helper function to format time in Pacific Time
-function formatRelativeTime(timestamp: number): string {
-  // Validate timestamp
-  if (!timestamp || typeof timestamp !== "number" || isNaN(timestamp)) {
-    return "recently";
-  }
-  
-  // Get current time in Pacific Time
-  const now = Date.now();
-  const diff = now - timestamp;
-  
-  // Handle invalid diff (future dates or very old)
-  if (diff < 0 || diff > 31536000000 * 10) {
-    return "recently";
-  }
-  
-  const minutes = Math.floor(diff / 60000);
-  const hours = Math.floor(diff / 3600000);
-  const days = Math.floor(diff / 86400000);
-  const weeks = Math.floor(diff / 604800000);
-  const months = Math.floor(diff / 2592000000);
-  
-  if (minutes < 1) return "just now";
-  if (minutes < 60) return `${minutes} ${minutes === 1 ? "minute" : "minutes"} ago`;
-  if (hours < 24) return `${hours} ${hours === 1 ? "hour" : "hours"} ago`;
-  if (days < 7) return `${days} ${days === 1 ? "day" : "days"} ago`;
-  if (weeks < 4) return `${weeks} ${weeks === 1 ? "week" : "weeks"} ago`;
-  if (months < 12) return `${months} ${months === 1 ? "month" : "months"} ago`;
-  
-  // For older dates, show the full date in Pacific Time
-  const date = new Date(timestamp);
-  return date.toLocaleDateString("en-US", { 
-    month: "long", 
+// Helper function to get current date in PST format (M/D/YY)
+function getCurrentDatePST(): string {
+  const date = new Date();
+  return date.toLocaleDateString("en-US", {
+    month: "numeric",
     day: "numeric",
-    year: "numeric",
+    year: "2-digit",
     timeZone: "America/Los_Angeles"
-  }).toLowerCase();
+  });
 }
-
-// May 1, 2026 in Pacific Time (approximately)
-const MAY_1_2026_PST = new Date("2026-05-01T12:00:00-07:00").getTime();
 
 const defaultReviews: Review[] = [
   {
@@ -64,7 +33,7 @@ const defaultReviews: Review[] = [
     role: "Software Engineer",
     rating: 5,
     content: "amazing app, ayush! keep up the good work.",
-    timestamp: MAY_1_2026_PST,
+    date: "5/1/26",
   },
 ];
 
@@ -154,7 +123,7 @@ export default function ReviewsPage() {
         role: formData.role || "anonymous",
         rating: formData.rating,
         content: formData.content.toLowerCase(),
-        timestamp: Date.now(),
+        date: getCurrentDatePST(),
       };
       
       setReviews([newReview, ...reviews]);
@@ -304,7 +273,7 @@ export default function ReviewsPage() {
                 </div>
                 <div className="text-right">
                   <StarRating rating={review.rating} />
-                  <p className="mt-1 text-xs text-muted-foreground">{formatRelativeTime(review.timestamp)}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{review.date}</p>
                 </div>
               </div>
               <p className="leading-relaxed text-muted-foreground">
