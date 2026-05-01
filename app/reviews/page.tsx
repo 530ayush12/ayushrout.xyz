@@ -9,10 +9,32 @@ interface Review {
   role: string;
   rating: number;
   content: string;
-  date: string;
+  timestamp: number;
 }
 
 const STORAGE_KEY = "ayushrout-reviews";
+
+// Helper function to format relative time
+function formatRelativeTime(timestamp: number): string {
+  const now = Date.now();
+  const diff = now - timestamp;
+  
+  const minutes = Math.floor(diff / 60000);
+  const hours = Math.floor(diff / 3600000);
+  const days = Math.floor(diff / 86400000);
+  const weeks = Math.floor(diff / 604800000);
+  const months = Math.floor(diff / 2592000000);
+  
+  if (minutes < 1) return "just now";
+  if (minutes < 60) return `${minutes} ${minutes === 1 ? "minute" : "minutes"} ago`;
+  if (hours < 24) return `${hours} ${hours === 1 ? "hour" : "hours"} ago`;
+  if (days < 7) return `${days} ${days === 1 ? "day" : "days"} ago`;
+  if (weeks < 4) return `${weeks} ${weeks === 1 ? "week" : "weeks"} ago`;
+  if (months < 12) return `${months} ${months === 1 ? "month" : "months"} ago`;
+  
+  const date = new Date(timestamp);
+  return date.toLocaleDateString("en-US", { month: "long", year: "numeric" }).toLowerCase();
+}
 
 const defaultReviews: Review[] = [
   {
@@ -21,7 +43,7 @@ const defaultReviews: Review[] = [
     role: "Product Designer",
     rating: 5,
     content: "ayush is incredibly talented for his age. he built our landing page in record time and it looks amazing. highly recommend working with him.",
-    date: "april 2026",
+    timestamp: Date.now() - 86400000 * 2, // 2 days ago
   },
   {
     id: 2,
@@ -29,7 +51,7 @@ const defaultReviews: Review[] = [
     role: "Startup Founder",
     rating: 5,
     content: "worked with ayush on an ios app concept. his understanding of user experience and clean design is impressive. will definitely collaborate again.",
-    date: "march 2026",
+    timestamp: Date.now() - 86400000 * 7, // 1 week ago
   },
   {
     id: 3,
@@ -37,15 +59,15 @@ const defaultReviews: Review[] = [
     role: "Software Engineer",
     rating: 5,
     content: "ayush helped me understand ai integration for my project. patient, knowledgeable, and delivers quality work. a pleasure to work with.",
-    date: "february 2026",
+    timestamp: Date.now() - 86400000 * 14, // 2 weeks ago
   },
   {
     id: 4,
     name: "David Kim",
     role: "Student",
-    rating: 4,
+    rating: 5,
     content: "used mathiq+ for my sat prep. the app is clean and the problems are challenging. great for daily practice.",
-    date: "january 2026",
+    timestamp: Date.now() - 86400000 * 21, // 3 weeks ago
   },
 ];
 
@@ -135,7 +157,7 @@ export default function ReviewsPage() {
         role: formData.role || "anonymous",
         rating: formData.rating,
         content: formData.content.toLowerCase(),
-        date: "just now",
+        timestamp: Date.now(),
       };
       
       setReviews([newReview, ...reviews]);
@@ -285,7 +307,7 @@ export default function ReviewsPage() {
                 </div>
                 <div className="text-right">
                   <StarRating rating={review.rating} />
-                  <p className="mt-1 text-xs text-muted-foreground">{review.date}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{formatRelativeTime(review.timestamp)}</p>
                 </div>
               </div>
               <p className="leading-relaxed text-muted-foreground">
