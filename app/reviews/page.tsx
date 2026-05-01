@@ -39,35 +39,11 @@ function formatRelativeTime(timestamp: number): string {
 const defaultReviews: Review[] = [
   {
     id: 1,
-    name: "Sarah Chen",
-    role: "Product Designer",
-    rating: 5,
-    content: "ayush is incredibly talented for his age. he built our landing page in record time and it looks amazing. highly recommend working with him.",
-    timestamp: Date.now() - 86400000 * 2, // 2 days ago
-  },
-  {
-    id: 2,
-    name: "Michael Torres",
-    role: "Startup Founder",
-    rating: 5,
-    content: "worked with ayush on an ios app concept. his understanding of user experience and clean design is impressive. will definitely collaborate again.",
-    timestamp: Date.now() - 86400000 * 7, // 1 week ago
-  },
-  {
-    id: 3,
-    name: "Emily Park",
+    name: "Priyabrata Rout",
     role: "Software Engineer",
     rating: 5,
-    content: "ayush helped me understand ai integration for my project. patient, knowledgeable, and delivers quality work. a pleasure to work with.",
-    timestamp: Date.now() - 86400000 * 14, // 2 weeks ago
-  },
-  {
-    id: 4,
-    name: "David Kim",
-    role: "Student",
-    rating: 5,
-    content: "used mathiq+ for my sat prep. the app is clean and the problems are challenging. great for daily practice.",
-    timestamp: Date.now() - 86400000 * 21, // 3 weeks ago
+    content: "ayush is an exceptional developer with a keen eye for detail. his work ethic and ability to deliver quality products at such a young age is truly impressive.",
+    timestamp: Date.now() - 86400000 * 3, // 3 days ago
   },
 ];
 
