@@ -12,12 +12,23 @@ interface Review {
   timestamp: number;
 }
 
-const STORAGE_KEY = "ayushrout-reviews";
+// Changed storage key to reset old cached data with invalid date format
+const STORAGE_KEY = "ayushrout-reviews-v2";
 
 // Helper function to format relative time
 function formatRelativeTime(timestamp: number): string {
+  // Validate timestamp
+  if (!timestamp || typeof timestamp !== "number" || isNaN(timestamp)) {
+    return "recently";
+  }
+  
   const now = Date.now();
   const diff = now - timestamp;
+  
+  // Handle invalid diff (future dates or very old)
+  if (diff < 0 || diff > 31536000000 * 10) {
+    return "recently";
+  }
   
   const minutes = Math.floor(diff / 60000);
   const hours = Math.floor(diff / 3600000);
@@ -42,7 +53,7 @@ const defaultReviews: Review[] = [
     name: "Priyabrata Rout",
     role: "Software Engineer",
     rating: 5,
-    content: "ayush is an exceptional developer with a keen eye for detail. his work ethic and ability to deliver quality products at such a young age is truly impressive.",
+    content: "amazing app, ayush! keep up the good work.",
     timestamp: Date.now() - 86400000 * 3, // 3 days ago
   },
 ];
