@@ -12,16 +12,17 @@ interface Review {
   timestamp: number;
 }
 
-// Changed storage key to reset old cached data with invalid date format
-const STORAGE_KEY = "ayushrout-reviews-v2";
+// Changed storage key to reset old cached data
+const STORAGE_KEY = "ayushrout-reviews-v3";
 
-// Helper function to format relative time
+// Helper function to format time in Pacific Time
 function formatRelativeTime(timestamp: number): string {
   // Validate timestamp
   if (!timestamp || typeof timestamp !== "number" || isNaN(timestamp)) {
     return "recently";
   }
   
+  // Get current time in Pacific Time
   const now = Date.now();
   const diff = now - timestamp;
   
@@ -43,9 +44,18 @@ function formatRelativeTime(timestamp: number): string {
   if (weeks < 4) return `${weeks} ${weeks === 1 ? "week" : "weeks"} ago`;
   if (months < 12) return `${months} ${months === 1 ? "month" : "months"} ago`;
   
+  // For older dates, show the full date in Pacific Time
   const date = new Date(timestamp);
-  return date.toLocaleDateString("en-US", { month: "long", year: "numeric" }).toLowerCase();
+  return date.toLocaleDateString("en-US", { 
+    month: "long", 
+    day: "numeric",
+    year: "numeric",
+    timeZone: "America/Los_Angeles"
+  }).toLowerCase();
 }
+
+// May 1, 2026 in Pacific Time (approximately)
+const MAY_1_2026_PST = new Date("2026-05-01T12:00:00-07:00").getTime();
 
 const defaultReviews: Review[] = [
   {
@@ -54,7 +64,7 @@ const defaultReviews: Review[] = [
     role: "Software Engineer",
     rating: 5,
     content: "amazing app, ayush! keep up the good work.",
-    timestamp: Date.now() - 86400000 * 3, // 3 days ago
+    timestamp: MAY_1_2026_PST,
   },
 ];
 
