@@ -11,7 +11,7 @@ export default function ContactPage() {
     <div className="space-y-20">
       <section className="space-y-16">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          05 / correspondence
+          06 / correspondence
         </p>
 
         <div className="space-y-8">

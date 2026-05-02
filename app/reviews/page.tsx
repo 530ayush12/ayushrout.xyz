@@ -141,7 +141,7 @@ export default function ReviewsPage() {
       {/* Header */}
       <section>
         <p className="mb-8 text-xs uppercase tracking-widest text-muted-foreground">
-          06 / testimonials
+          05 / testimonials
         </p>
 
         <h1 className="mb-6 font-serif text-3xl font-normal text-foreground md:text-4xl">
