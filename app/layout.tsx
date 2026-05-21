@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://ayushrout.xyz/ayush.png?v=2', // ✅ LOCAL + CACHE FIX
+        url: 'https://ayushrout.xyz/ayush.png?v=3',
         width: 1200,
         height: 630,
         alt: 'ayush rout preview',
@@ -53,7 +53,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'ayush rout',
     description: 'portfolio, blog, and builds',
-    images: ['https://ayushrout.xyz/ayush.png?v=2'], // ✅ SAME IMAGE
+    creator: '@ayushrout2012',
+    images: ['https://ayushrout.xyz/ayush.png?v=3'],
   },
 }
 
