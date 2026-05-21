@@ -96,3 +96,21 @@ export default function RootLayout({
     </html>
   )
 }
+export const metadata = {
+  metadataBase: new URL("https://ayushrout.xyz"),
+  title: "Ayush Rout",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  openGraph: {
+    title: "Ayush Rout",
+    url: "https://ayushrout.xyz",
+    images: ["/og-image.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-image.png"],
+  },
+};
