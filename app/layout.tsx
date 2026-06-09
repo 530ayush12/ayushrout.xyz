@@ -1,16 +1,25 @@
-import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono, Cormorant_Garamond } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import { SideNav } from '@/components/side-nav'
-import { LotusBadge } from '@/components/lotus-badge'
-import { PageTransition } from '@/components/page-transition'
-import './globals.css'
+import type { Metadata, Viewport } from "next"
+import { Geist, Geist_Mono, Cormorant_Garamond } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
+import { SideNav } from "@/components/side-nav"
+import { LotusBadge } from "@/components/lotus-badge"
+import { PageTransition } from "@/components/page-transition"
+import "./globals.css"
 
-const geist = Geist({ subsets: ["latin"] })
-const geistMono = Geist_Mono({ subsets: ["latin"] })
-const cormorant = Cormorant_Garamond({ 
-  subsets: ["latin"], 
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist",
+})
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+})
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
   weight: ["400", "500", "600"],
+  variable: "--font-cormorant",
 })
 
 export const viewport: Viewport = {
@@ -21,39 +30,39 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ayushrout.xyz'),
+  metadataBase: new URL("https://ayushrout.xyz"),
 
-  title: 'ayush rout',
-  description: 'portfolio, blog, and builds',
+  title: "ayush rout",
+  description: "portfolio, blog, and builds",
 
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/apple-icon.jpg',
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.jpg",
   },
 
   openGraph: {
-    title: 'ayush rout',
-    description: 'portfolio, blog, and builds',
-    url: 'https://ayushrout.xyz',
-    siteName: 'ayush rout',
-    type: 'website',
+    title: "ayush rout",
+    description: "portfolio, blog, and builds",
+    url: "https://ayushrout.xyz",
+    siteName: "ayush rout",
+    type: "website",
     images: [
       {
-        url: 'https://ayushrout.xyz/ayush.png?v=3',
+        url: "/ayush.png",
         width: 1200,
         height: 630,
-        alt: 'ayush rout preview',
+        alt: "ayush rout preview",
       },
     ],
   },
 
   twitter: {
-    card: 'summary_large_image',
-    title: 'ayush rout',
-    description: 'portfolio, blog, and builds',
-    creator: '@ayushrout2012',
-    images: ['https://ayushrout.xyz/ayush.png?v=3'],
+    card: "summary_large_image",
+    title: "ayush rout",
+    description: "portfolio, blog, and builds",
+    creator: "@ayushrout201230",
+    images: ["/ayush.png"],
   },
 }
 
@@ -89,7 +98,7 @@ export default function RootLayout({
 
         <LotusBadge />
 
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>
   )
