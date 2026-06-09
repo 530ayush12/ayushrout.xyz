@@ -3,7 +3,6 @@ import { Geist, Geist_Mono, Cormorant_Garamond } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SideNav } from "@/components/side-nav"
 import { LotusBadge } from "@/components/lotus-badge"
-import { PasskeyGateway } from "@/components/passkey-gateway"
 import { PageTransition } from "@/components/page-transition"
 import "./globals.css"
 
@@ -91,9 +90,9 @@ export default function RootLayout({
           <SideNav />
 
           <main className="mx-auto max-w-3xl px-8 pb-24 pt-32 md:px-16 md:pr-48">
-            <PasskeyGateway>
-              <PageTransition>{children}</PageTransition>
-            </PasskeyGateway>
+            <PageTransition>
+              {children}
+            </PageTransition>
           </main>
         </div>
 

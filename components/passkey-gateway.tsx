@@ -29,6 +29,7 @@ export function PasskeyGateway({ children }: { children: React.ReactNode }) {
     }
   };
 
+  // Only render children after password is entered - nothing else shows
   if (isUnlocked) {
     return (
       <div className="animate-fade-in">
@@ -37,8 +38,9 @@ export function PasskeyGateway({ children }: { children: React.ReactNode }) {
     );
   }
 
+  // Password screen - this is the ONLY thing that renders when locked
   return (
-    <div className={`fixed inset-0 flex flex-col items-center justify-center bg-[#f5f5f5] px-6 transition-opacity duration-400 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
+    <div className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#f5f5f5] px-6 transition-opacity duration-400 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
       <div className="w-full max-w-sm">
         <h1 className="mb-3 text-center font-serif text-xl font-normal text-[#1a1a1a]">
           ayush rout
