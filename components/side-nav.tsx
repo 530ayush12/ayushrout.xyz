@@ -2,88 +2,45 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
 
 const navItems = [
-  { href: "/", label: "INDEX" },
-  { href: "/about", label: "ABOUT" },
-  { href: "/work", label: "WORK" },
-  { href: "/writing", label: "WRITING" },
-  { href: "/reviews", label: "REVIEWS" },
-  { href: "/contact", label: "CONTACT" },
+  { href: "/", label: "index" },
+  { href: "/about", label: "about" },
+  { href: "/work", label: "work" },
+  { href: "/writing", label: "writing" },
+  { href: "/contact", label: "contact" },
 ];
 
 export function SideNav() {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
-      {/* Mobile menu button */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed right-6 top-8 z-[60] p-2 md:hidden"
-        aria-label="Toggle menu"
+    <nav className="pointer-events-none fixed left-0 top-0 z-50 flex w-full items-start justify-between p-6 mix-blend-difference md:p-12">
+      <Link
+        href="/"
+        className="pointer-events-auto font-mono text-[10px] uppercase tracking-widest text-background"
       >
-        {isOpen ? (
-          <X className="h-5 w-5 text-foreground" />
-        ) : (
-          <Menu className="h-5 w-5 text-foreground" />
-        )}
-      </button>
+        A. Rout
+      </Link>
 
-      {/* Mobile menu overlay */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm md:hidden"
-          onClick={() => setIsOpen(false)}
-        >
-          <nav className="flex h-full flex-col items-center justify-center gap-6">
-            {navItems.map(({ href, label }) => {
-              const isActive = pathname === href || 
-                (href !== "/" && pathname.startsWith(href));
-              
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  onClick={() => setIsOpen(false)}
-                  className={`text-lg tracking-widest transition-all duration-300 ${
-                    isActive
-                      ? "text-foreground"
-                      : "text-muted-foreground/60 hover:text-foreground"
-                  }`}
-                >
-                  {label}
-                </Link>
-              );
-            })}
-          </nav>
-        </div>
-      )}
-
-      {/* Desktop side nav */}
-      <nav className="fixed right-0 top-0 z-50 hidden h-screen flex-col items-end justify-center gap-3 p-8 md:flex md:p-12">
+      <div className="pointer-events-auto flex flex-col items-end gap-2">
         {navItems.map(({ href, label }) => {
-          const isActive = pathname === href || 
-            (href !== "/" && pathname.startsWith(href));
-          
+          const isActive =
+            pathname === href || (href !== "/" && pathname.startsWith(href));
+
           return (
             <Link
               key={href}
               href={href}
-              className={`text-xs tracking-widest transition-all duration-300 ${
-                isActive
-                  ? "text-foreground"
-                  : "text-muted-foreground/60 hover:text-foreground"
+              className={`font-mono text-[10px] uppercase tracking-widest text-background transition-opacity duration-300 hover:opacity-100 ${
+                isActive ? "opacity-100" : "opacity-40"
               }`}
             >
               {label}
             </Link>
           );
         })}
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 }

@@ -8,47 +8,44 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="space-y-20">
-      <section className="space-y-12">
-        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          02 / trajectory
+    <div className="max-w-2xl">
+      <p className="mb-12 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+        02 / Trajectory
+      </p>
+
+      <div className="space-y-8 text-lg leading-relaxed text-foreground/80 md:text-xl">
+        <p>
+          i am 14 and i build like a founder. the goal is not to make things look
+          impressive in isolation. it is to solve real problems, ship, and keep
+          improving the system.
+        </p>
+        <p>
+          my journey started with building ios apps — mathiq+, scicore, and
+          quizai+. that taught me how to turn an idea into a product, how to ship
+          it, and how to listen to the people actually using it.
         </p>
 
-        <div className="space-y-6 text-xl leading-relaxed text-foreground md:text-2xl">
-          <p>
-            age is just a constraint. i approach engineering and product design with the mindset of a founder who needs to solve real problems, right now.
-          </p>
-          <p>
-            my journey started with building ios apps — mathiq+, scicore, and quizai+. that taught me how to ship, iterate, and build for real users.
+        <div className="py-8">
+          <Image
+            src="/images/ayush.jpg"
+            alt="Ayush Rout"
+            width={800}
+            height={600}
+            className="h-auto w-full rounded-md object-cover shadow-md"
+            priority
+          />
+          <p className="mt-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+            Fig 1. Momentum over perfection.
           </p>
         </div>
-      </section>
 
-      <section>
-        <Image
-          src="/images/ayush.jpg"
-          alt="Ayush Rout"
-          width={800}
-          height={600}
-          className="w-full rounded-sm"
-          priority
-        />
-      </section>
-
-      <section className="space-y-12">
-        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          03 / now
+        <p>
+          now i am focused on the intersection of artificial intelligence,
+          product-level design, and execution. that is why i am building lotus and
+          the rest of the work around it.
         </p>
-
-        <div className="space-y-6 text-xl leading-relaxed text-foreground md:text-2xl">
-          <p>
-            currently focused on ai and scaling products to thousands of users. building tools that make creation faster and more accessible.
-          </p>
-          <p>
-            based in the united states.
-          </p>
-        </div>
-      </section>
+        <p>based in the united states.</p>
+      </div>
     </div>
   );
 }

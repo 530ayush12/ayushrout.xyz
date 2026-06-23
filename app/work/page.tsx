@@ -8,71 +8,78 @@ export const metadata: Metadata = {
 
 const projects = [
   {
-    title: "trylotus.dev",
-    description: "an ai design tool that builds websites and apps from a simple prompt. type what you want, get a working product.",
-    link: "https://trylotus.dev",
+    title: "Lotus",
+    desc: "An AI design tool that builds websites and apps from a simple prompt. Type what you want, get a working product.",
+    url: "https://trylotus.dev",
+    linkLabel: "Live",
     year: "Now",
   },
   {
-    title: "serenequests.com",
-    description: "a simple, calming health guidance app for everyday wellness.",
-    link: "https://serenequests.com",
-    year: "Now",
-  },
-  {
-    title: "quizai+",
-    description: "an ai study buddy that turns your notes into flashcards and quizzes.",
-    link: "https://apps.apple.com/us/app/quizai/id6759224775",
+    title: "SereneQuests",
+    desc: "A simple, calming health guidance app for everyday wellness.",
+    url: "https://serenequests.com",
+    linkLabel: "Live",
     year: "2026",
   },
   {
-    title: "scicore",
-    description: "learn physics, chemistry, and biology through quick lessons and hands-on quizzes.",
-    link: "https://apps.apple.com/us/app/scicore/id6757728466",
+    title: "QuizAI+",
+    desc: "An AI study buddy that turns your notes into flashcards and quizzes.",
+    url: "https://apps.apple.com/us/app/quizai/id6759224775",
+    linkLabel: "App Store",
     year: "2026",
   },
   {
-    title: "mathiq+",
-    description: "a math app that makes you think. daily problems, timed challenges, and progress tracking.",
-    link: "https://apps.apple.com/us/app/mathiq/id6756983614",
-    year: "2025",
+    title: "SciCore",
+    desc: "Learn physics, chemistry, and biology through quick lessons and hands-on quizzes.",
+    url: "https://apps.apple.com/us/app/scicore/id6757728466",
+    linkLabel: "App Store",
+    year: "2026",
+  },
+  {
+    title: "MathIQ+",
+    desc: "A math app that makes you think. Daily problems, timed challenges, and progress tracking.",
+    url: "https://apps.apple.com/us/app/mathiq/id6756983614",
+    linkLabel: "App Store",
+    year: "Last year",
   },
 ];
 
 export default function WorkPage() {
   return (
-    <div className="space-y-20">
-      <section className="space-y-16">
-        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          03 / selected works
-        </p>
+    <div className="w-full max-w-3xl">
+      <p className="mb-12 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+        03 / Selected Works
+      </p>
 
-        <div className="space-y-16">
-          {projects.map((project, index) => (
-            <Link
-              key={index}
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block"
-            >
-              <article className="grid grid-cols-[80px_1fr] gap-8 border-t border-border pt-8">
-                <span className="text-sm text-muted-foreground">
-                  {project.year}
-                </span>
-                <div className="space-y-3">
-                  <h2 className="font-serif text-2xl text-foreground transition-opacity group-hover:opacity-60 md:text-3xl">
-                    {project.title}
-                  </h2>
-                  <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-                    {project.description}
-                  </p>
-                </div>
-              </article>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <div className="flex w-full flex-col">
+        {projects.map((project) => (
+          <Link
+            key={project.title}
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center justify-between gap-4 border-b border-foreground/5 py-8 transition-colors duration-500 hover:border-foreground/20 md:py-12"
+          >
+            <div className="flex min-w-0 flex-col gap-2 md:flex-row md:items-baseline md:gap-8">
+              <span className="w-16 shrink-0 font-mono text-xs text-muted-foreground">
+                {project.year}
+              </span>
+              <div className="flex min-w-0 flex-col gap-2">
+                <h3 className="text-2xl tracking-tight transition-transform duration-500 group-hover:translate-x-2 md:text-4xl">
+                  {project.title}
+                </h3>
+                <p className="max-w-xl text-base text-muted-foreground md:text-lg">
+                  {project.desc}
+                </p>
+              </div>
+            </div>
+            <span className="inline-flex shrink-0 items-center gap-2 rounded-full border border-foreground/15 px-3 py-1 text-[10px] uppercase tracking-widest text-muted-foreground transition-colors group-hover:border-foreground/35 group-hover:text-foreground">
+              {project.linkLabel}
+              <span aria-hidden="true">↗</span>
+            </span>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
