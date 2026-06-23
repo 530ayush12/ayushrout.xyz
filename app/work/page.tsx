@@ -23,7 +23,7 @@ const projects = [
   },
   {
     title: "QuizAI+",
-    desc: "An AI study buddy that turns your notes into flashcards and quizzes.",
+    desc: "An AI study buddy that quizzes students on any topic, with instant feedback to help you learn faster.",
     url: "https://apps.apple.com/us/app/quizai/id6759224775",
     linkLabel: "App Store",
     year: "2026",
