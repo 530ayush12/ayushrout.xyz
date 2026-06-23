@@ -36,25 +36,25 @@ export function LotusBadge() {
   if (!isHydrated || !isVisible) return null
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex items-center gap-3 rounded-full bg-foreground px-4 py-2.5 shadow-lg">
+    <div className="fixed bottom-5 right-5 z-[9999] animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="relative">
         <Link
           href="https://trylotus.dev"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2.5 text-background transition-opacity hover:opacity-80"
+          className="inline-flex items-center gap-3 rounded-md border border-white/10 bg-[rgba(18,18,18,0.95)] py-3 pl-5 pr-9 font-serif text-[15px] font-medium tracking-wide text-white/90 shadow-[0_4px_24px_rgba(0,0,0,0.2)] backdrop-blur-md transition-opacity hover:opacity-90"
         >
-          <LotusIcon className="h-5 w-5" />
-          <span className="text-sm font-medium">
-            Built with <span className="font-semibold">Lotus</span>
+          <LotusIcon className="h-7 w-7 shrink-0" />
+          <span>
+            Made with <span className="font-semibold">Lotus</span>
           </span>
         </Link>
         <button
           onClick={handleDismiss}
-          className="ml-1 flex h-5 w-5 items-center justify-center rounded-full text-background/60 transition-colors hover:bg-background/10 hover:text-background"
+          className="absolute -right-2 -top-2 flex h-[22px] w-[22px] items-center justify-center rounded-full border border-white/15 bg-[rgba(18,18,18,0.95)] text-white/70 transition-colors hover:text-white"
           aria-label="Dismiss badge"
         >
-          <X className="h-3.5 w-3.5" />
+          <X className="h-3 w-3" />
         </button>
       </div>
     </div>

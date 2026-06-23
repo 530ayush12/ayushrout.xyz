@@ -1,32 +1,29 @@
 import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono, Cormorant_Garamond } from "next/font/google"
+import { Newsreader, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SideNav } from "@/components/side-nav"
 import { LotusBadge } from "@/components/lotus-badge"
 import { PageTransition } from "@/components/page-transition"
 import "./globals.css"
 
-const geist = Geist({
+const newsreader = Newsreader({
   subsets: ["latin"],
-  variable: "--font-geist",
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-newsreader",
 })
 
-const geistMono = Geist_Mono({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
-})
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-cormorant",
+  weight: ["400", "700"],
+  variable: "--font-jetbrains-mono",
 })
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-  themeColor: "#f5f5f5",
+  themeColor: "#f2f0e9",
 }
 
 export const metadata: Metadata = {
@@ -74,26 +71,19 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${geistMono.variable} ${cormorant.variable} bg-background`}
+      className={`${newsreader.variable} ${jetbrainsMono.variable} bg-background`}
     >
-      <body className="font-sans antialiased">
-        <div className="min-h-screen">
-          <header className="fixed left-0 top-0 z-50 p-8 md:p-12">
-            <a
-              href="/"
-              className="font-mono text-sm tracking-wider text-foreground transition-opacity hover:opacity-60"
-            >
-              A. ROUT
-            </a>
-          </header>
-
+      <body className="font-serif antialiased">
+        <div className="relative flex min-h-screen w-full flex-col">
           <SideNav />
 
-          <main className="mx-auto max-w-3xl px-8 pb-24 pt-32 md:px-16 md:pr-48">
+          <main className="flex min-h-screen flex-grow items-center justify-center p-6 pt-32 md:p-24 md:pt-48 lg:p-32">
             <PageTransition>
               {children}
             </PageTransition>
           </main>
+
+          <div className="pointer-events-none fixed inset-0 z-[-1] shadow-[inset_0_0_100px_rgba(0,0,0,0.02)]" />
         </div>
 
         <LotusBadge />
