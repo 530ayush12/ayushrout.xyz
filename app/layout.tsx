@@ -1,95 +1,57 @@
-import type { Metadata, Viewport } from "next"
-import { Newsreader, JetBrains_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import { SideNav } from "@/components/side-nav"
-import { LotusBadge } from "@/components/lotus-badge"
-import { PageTransition } from "@/components/page-transition"
-import "./globals.css"
+import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { Instrument_Serif, Manrope } from "next/font/google";
+import "./globals.css";
 
-const newsreader = Newsreader({
+const display = Instrument_Serif({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  style: ["normal", "italic"],
-  variable: "--font-newsreader",
-})
+  weight: "400",
+  variable: "--font-display",
+});
 
-const jetbrainsMono = JetBrains_Mono({
+const sans = Manrope({
   subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-jetbrains-mono",
-})
+  variable: "--font-sans",
+});
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  themeColor: "#f2f0e9",
-}
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f3f0e8" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0b0a" },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ayushrout.xyz"),
-
-  title: "ayush rout",
-  description: "portfolio, blog, and builds",
-
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-icon.jpg",
-  },
-
+  title: "Ayush Rout — Developer & Designer",
+  description: "Student developer building AI products, iOS apps, and thoughtful web experiences.",
+  icons: { icon: "/favicon.ico", apple: "/apple-icon.jpg" },
   openGraph: {
-    title: "ayush rout",
-    description: "portfolio, blog, and builds",
+    title: "Ayush Rout — Developer & Designer",
+    description: "AI products, iOS apps, and thoughtful web experiences.",
     url: "https://ayushrout.xyz",
-    siteName: "ayush rout",
+    siteName: "Ayush Rout",
     type: "website",
-    images: [
-      {
-        url: "/ayush.png",
-        width: 1200,
-        height: 630,
-        alt: "ayush rout preview",
-      },
-    ],
+    images: [{ url: "/ayush.png", width: 1200, height: 630, alt: "Ayush Rout portfolio" }],
   },
-
   twitter: {
     card: "summary_large_image",
-    title: "ayush rout",
-    description: "portfolio, blog, and builds",
+    title: "Ayush Rout — Developer & Designer",
+    description: "AI products, iOS apps, and thoughtful web experiences.",
     creator: "@ayushrout201230",
     images: ["/ayush.png"],
   },
-}
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${newsreader.variable} ${jetbrainsMono.variable} bg-background`}
-    >
-      <body className="font-serif antialiased">
-        <div className="relative flex min-h-screen w-full flex-col">
-          <SideNav />
-
-          <main className="flex min-h-screen flex-grow items-center justify-center p-6 pt-32 md:p-24 md:pt-48 lg:p-32">
-            <PageTransition>
-              {children}
-            </PageTransition>
-          </main>
-
-          <div className="pointer-events-none fixed inset-0 z-[-1] shadow-[inset_0_0_100px_rgba(0,0,0,0.02)]" />
-        </div>
-
-        <LotusBadge />
-
+    <html lang="en" suppressHydrationWarning className={`${display.variable} ${sans.variable}`}>
+      <body>
+        {children}
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>
-  )
+  );
 }
