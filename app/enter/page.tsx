@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import styles from "./enter.module.css";
 
 export default function EnterPage() {
   const router = useRouter();
@@ -37,16 +38,16 @@ export default function EnterPage() {
   }
 
   return (
-    <main className="auth-gateway">
-      <section className="auth-card">
-        <div className="auth-meta">
+    <main className={styles.gateway}>
+      <section className={styles.card}>
+        <div className={styles.meta}>
           <span>Ayush Rout</span>
           <span>Private access</span>
         </div>
         <p className="eyebrow">Password required</p>
         <h1>Enter the portfolio.</h1>
-        <form onSubmit={handleSubmit} className="auth-form">
-          <label htmlFor="password" className="sr-only">Password</label>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <label htmlFor="password" className={styles.srOnly}>Password</label>
           <input
             id="password"
             type="password"
@@ -60,7 +61,7 @@ export default function EnterPage() {
           <button type="submit" disabled={loading}>
             {loading ? "Checking…" : "Enter"}
           </button>
-          <p className="auth-error" role="alert" aria-live="polite">{error}</p>
+          <p className={styles.error} role="alert" aria-live="polite">{error}</p>
         </form>
       </section>
     </main>
