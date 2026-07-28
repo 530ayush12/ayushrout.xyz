@@ -27,12 +27,6 @@ const projects = [
     description: "An AI website builder focused on fast generation, live previews, publishing, and polished design output.",
     links: [{ label: "Website", href: "https://trylotus.dev" }],
   },
-  {
-    name: "SolveGPT",
-    label: "iOS · AI assistant",
-    description: "A visual homework assistant concept combining chat, image input, and guided problem solving.",
-    links: [{ label: "Details", href: "#contact" }],
-  },
 ];
 
 const notes = [
@@ -50,7 +44,6 @@ export default function Home() {
     const nextDark = savedTheme ? savedTheme === "dark" : true;
     setDark(nextDark);
     document.documentElement.dataset.theme = nextDark ? "dark" : "light";
-
     setPlayerMinimized(localStorage.getItem("ayush-spotify-minimized") === "true");
   }, []);
 
@@ -134,11 +127,6 @@ export default function Home() {
         </section>
 
         <section id="work" className="work-section reveal reveal-4">
-          <div className="section-heading">
-            <span>02 / selected work</span>
-            <span>{String(projects.length).padStart(2, "0")} projects</span>
-          </div>
-
           <div className="project-list">
             {projects.map((project, index) => (
               <article className="project-row" key={project.name}>
@@ -183,7 +171,7 @@ export default function Home() {
             <h2>Have an idea worth building?</h2>
           </div>
           <div className="footer-links">
-            <a href="mailto:hello@ayushrout.xyz">email ↗</a>
+            <a href="mailto:ayushrout.ar@gmail.com">email ↗</a>
             <a href="https://github.com/530ayush12" target="_blank" rel="noreferrer">github ↗</a>
             <a href="https://x.com/ayushrout201230" target="_blank" rel="noreferrer">x / twitter ↗</a>
           </div>
