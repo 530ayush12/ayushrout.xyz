@@ -1,31 +1,37 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import styles from "./home.module.css";
 
 const projects = [
   {
     name: "GeniusMath AI",
     label: "iOS · education",
     description: "AI-generated math practice with adjustable difficulty, custom quiz lengths, instant scoring, and step-by-step explanations.",
-    href: "https://apps.apple.com/",
+    links: [
+      { label: "App Store", href: "https://apps.apple.com/us/app/geniusmath-ai/id6790629890" },
+    ],
   },
   {
     name: "SereneQuests",
-    label: "iOS · wellness",
+    label: "iOS + web · wellness",
     description: "A calm, quest-based app that turns healthy routines into approachable daily progress.",
-    href: "https://apps.apple.com/",
+    links: [
+      { label: "App Store", href: "https://apps.apple.com/us/app/serenequests/id6786419127" },
+      { label: "Web", href: "https://serenequests.com" },
+    ],
   },
   {
     name: "Lotus",
     label: "web · AI design",
     description: "An AI website builder focused on fast generation, live previews, publishing, and polished design output.",
-    href: "https://trylotus.dev",
+    links: [{ label: "Website", href: "https://trylotus.dev" }],
   },
   {
     name: "SolveGPT",
     label: "iOS · AI assistant",
     description: "A visual homework assistant concept combining chat, image input, and guided problem solving.",
-    href: "#contact",
+    links: [{ label: "Details", href: "#contact" }],
   },
 ];
 
@@ -37,16 +43,12 @@ const notes = [
 
 export default function Home() {
   const [dark, setDark] = useState(true);
-  const [entered, setEntered] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("ayush-theme");
     const nextDark = savedTheme ? savedTheme === "dark" : true;
     setDark(nextDark);
     document.documentElement.dataset.theme = nextDark ? "dark" : "light";
-
-    const hasEntered = sessionStorage.getItem("ayush-entered") === "true";
-    setEntered(hasEntered);
   }, []);
 
   useEffect(() => {
@@ -78,23 +80,7 @@ export default function Home() {
         target.removeEventListener("mouseleave", shrink);
       });
     };
-  }, [entered]);
-
-  const enterSite = () => {
-    sessionStorage.setItem("ayush-entered", "true");
-    setEntered(true);
-  };
-
-  if (!entered) {
-    return (
-      <main className="gateway">
-        <button className="gateway-button" onClick={enterSite} aria-label="Enter Ayush Rout's portfolio">
-          <span className="gateway-mark">AR</span>
-          <span className="gateway-copy">click anywhere to enter</span>
-        </button>
-      </main>
-    );
-  }
+  }, []);
 
   return (
     <>
@@ -148,7 +134,7 @@ export default function Home() {
 
           <div className="project-list">
             {projects.map((project, index) => (
-              <a className="project-row" href={project.href} key={project.name} target={project.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+              <article className="project-row" key={project.name}>
                 <span className="project-number">0{index + 1}</span>
                 <div className="project-main">
                   <h2>{project.name}</h2>
@@ -156,9 +142,18 @@ export default function Home() {
                 </div>
                 <div className="project-side">
                   <span>{project.label}</span>
-                  <span className="arrow">↗</span>
+                  <span>
+                    {project.links.map((link, linkIndex) => (
+                      <span key={link.href}>
+                        {linkIndex > 0 ? " · " : ""}
+                        <a href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+                          {link.label} ↗
+                        </a>
+                      </span>
+                    ))}
+                  </span>
                 </div>
-              </a>
+              </article>
             ))}
           </div>
         </section>
@@ -173,22 +168,6 @@ export default function Home() {
               </article>
             ))}
           </div>
-        </section>
-
-        <section className="music-section reveal reveal-5" aria-label="Music player">
-          <div>
-            <p className="eyebrow">currently playing</p>
-            <h2>Losing Interest (Sped Up)</h2>
-            <p>Shiloh Dynasty, LIT cosmo</p>
-          </div>
-          <iframe
-            title="Spotify player"
-            src="https://open.spotify.com/embed/track/3P3UA61WRQqwCXaoFOTENd?utm_source=generator&theme=0"
-            width="100%"
-            height="152"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-          />
         </section>
 
         <footer id="contact" className="site-footer reveal reveal-5">
@@ -207,6 +186,17 @@ export default function Home() {
           </div>
         </footer>
       </main>
+
+      <aside className={styles.floatingPlayer} aria-label="Spotify player">
+        <iframe
+          title="Spotify player"
+          src="https://open.spotify.com/embed/track/3P3UA61WRQqwCXaoFOTENd?utm_source=generator&theme=0"
+          width="100%"
+          height="152"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        />
+      </aside>
     </>
   );
 }
