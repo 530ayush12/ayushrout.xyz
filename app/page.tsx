@@ -37,16 +37,12 @@ const notes = [
 
 export default function Home() {
   const [dark, setDark] = useState(true);
-  const [entered, setEntered] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("ayush-theme");
     const nextDark = savedTheme ? savedTheme === "dark" : true;
     setDark(nextDark);
     document.documentElement.dataset.theme = nextDark ? "dark" : "light";
-
-    const hasEntered = sessionStorage.getItem("ayush-entered") === "true";
-    setEntered(hasEntered);
   }, []);
 
   useEffect(() => {
@@ -78,23 +74,7 @@ export default function Home() {
         target.removeEventListener("mouseleave", shrink);
       });
     };
-  }, [entered]);
-
-  const enterSite = () => {
-    sessionStorage.setItem("ayush-entered", "true");
-    setEntered(true);
-  };
-
-  if (!entered) {
-    return (
-      <main className="gateway">
-        <button className="gateway-button" onClick={enterSite} aria-label="Enter Ayush Rout's portfolio">
-          <span className="gateway-mark">AR</span>
-          <span className="gateway-copy">click anywhere to enter</span>
-        </button>
-      </main>
-    );
-  }
+  }, []);
 
   return (
     <>
@@ -175,22 +155,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="music-section reveal reveal-5" aria-label="Music player">
-          <div>
-            <p className="eyebrow">currently playing</p>
-            <h2>Losing Interest (Sped Up)</h2>
-            <p>Shiloh Dynasty, LIT cosmo</p>
-          </div>
-          <iframe
-            title="Spotify player"
-            src="https://open.spotify.com/embed/track/3P3UA61WRQqwCXaoFOTENd?utm_source=generator&theme=0"
-            width="100%"
-            height="152"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-          />
-        </section>
-
         <footer id="contact" className="site-footer reveal reveal-5">
           <div>
             <p className="eyebrow">04 / connect</p>
@@ -207,6 +171,17 @@ export default function Home() {
           </div>
         </footer>
       </main>
+
+      <aside className="floating-player" aria-label="Spotify player">
+        <iframe
+          title="Spotify player"
+          src="https://open.spotify.com/embed/track/3P3UA61WRQqwCXaoFOTENd?utm_source=generator&theme=0"
+          width="100%"
+          height="152"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        />
+      </aside>
     </>
   );
 }
