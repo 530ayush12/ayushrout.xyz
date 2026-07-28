@@ -15,7 +15,7 @@ const projects = [
   {
     name: "SereneQuests",
     label: "iOS + web · wellness",
-    description: "A calm, quest-based app that turns healthy routines into approachable daily progress.",
+    description: "description: "An AI wellness companion for mindful conversations, daily growth, and healthier habits.",
     links: [
       { label: "App Store", href: "https://apps.apple.com/us/app/serenequests/id6786419127" },
       { label: "Web", href: "https://serenequests.com" },
