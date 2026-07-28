@@ -190,7 +190,7 @@ export default function Home() {
       <aside className={styles.floatingPlayer} aria-label="Spotify player">
         <iframe
           title="Spotify player"
-          src="https://open.spotify.com/embed/track/3P3UA61WRQqwCXaoFOTENd?utm_source=generator&theme=0"
+          src="https://open.spotify.com/embed/track/2f3xoAouZoP08h9jSRgf6O?utm_source=generator&theme=0"
           width="100%"
           height="152"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
