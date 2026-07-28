@@ -1,60 +1,212 @@
-import Gateway from "@/components/Gateway";
-import SpotifyPlayer from "@/components/SpotifyPlayer";
+"use client";
+
+import { useEffect, useState } from "react";
 
 const projects = [
-  { name: "mathiq+", description: "ai-powered educational math assistant", link: "#" },
-  { name: "scicore", description: "interactive science learning platform", link: "#" },
-  { name: "supercompress", description: "context compression for ai agents", link: "#" },
-  { name: "ditherstudio", description: "dither any image in the browser", link: "#" },
+  {
+    name: "GeniusMath AI",
+    label: "iOS · education",
+    description: "AI-generated math practice with adjustable difficulty, custom quiz lengths, instant scoring, and step-by-step explanations.",
+    href: "https://apps.apple.com/",
+  },
+  {
+    name: "SereneQuests",
+    label: "iOS · wellness",
+    description: "A calm, quest-based app that turns healthy routines into approachable daily progress.",
+    href: "https://apps.apple.com/",
+  },
+  {
+    name: "Lotus",
+    label: "web · AI design",
+    description: "An AI website builder focused on fast generation, live previews, publishing, and polished design output.",
+    href: "https://trylotus.dev",
+  },
+  {
+    name: "SolveGPT",
+    label: "iOS · AI assistant",
+    description: "A visual homework assistant concept combining chat, image input, and guided problem solving.",
+    href: "#contact",
+  },
+];
+
+const notes = [
+  ["01", "Building products that make learning feel simpler, faster, and more personal."],
+  ["02", "Interested in AI, interface design, SwiftUI, and shipping ideas into real products."],
+  ["03", "Currently developing new educational tools and preparing my projects for competitions."],
 ];
 
 export default function Home() {
+  const [dark, setDark] = useState(true);
+  const [entered, setEntered] = useState(false);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("ayush-theme");
+    const nextDark = savedTheme ? savedTheme === "dark" : true;
+    setDark(nextDark);
+    document.documentElement.dataset.theme = nextDark ? "dark" : "light";
+
+    const hasEntered = sessionStorage.getItem("ayush-entered") === "true";
+    setEntered(hasEntered);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    localStorage.setItem("ayush-theme", dark ? "dark" : "light");
+  }, [dark]);
+
+  useEffect(() => {
+    const cursor = document.querySelector<HTMLElement>("[data-cursor]");
+    if (!cursor || matchMedia("(pointer: coarse)").matches) return;
+
+    const move = (event: MouseEvent) => {
+      cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+    };
+    const grow = () => cursor.classList.add("is-hovering");
+    const shrink = () => cursor.classList.remove("is-hovering");
+    const targets = document.querySelectorAll("a, button, iframe");
+
+    window.addEventListener("mousemove", move);
+    targets.forEach((target) => {
+      target.addEventListener("mouseenter", grow);
+      target.addEventListener("mouseleave", shrink);
+    });
+
+    return () => {
+      window.removeEventListener("mousemove", move);
+      targets.forEach((target) => {
+        target.removeEventListener("mouseenter", grow);
+        target.removeEventListener("mouseleave", shrink);
+      });
+    };
+  }, [entered]);
+
+  const enterSite = () => {
+    sessionStorage.setItem("ayush-entered", "true");
+    setEntered(true);
+  };
+
+  if (!entered) {
+    return (
+      <main className="gateway">
+        <button className="gateway-button" onClick={enterSite} aria-label="Enter Ayush Rout's portfolio">
+          <span className="gateway-mark">AR</span>
+          <span className="gateway-copy">click anywhere to enter</span>
+        </button>
+      </main>
+    );
+  }
+
   return (
-    <Gateway>
-      <main className="min-h-screen bg-[#0d0d0d] text-zinc-300 font-sans px-6 py-12 max-w-3xl mx-auto lowercase tracking-tight">
-        {/* Navigation */}
-        <header className="flex justify-between items-center mb-24 text-sm text-zinc-500">
-          <span className="text-zinc-200 font-medium">ayush rout</span>
-          <nav className="flex gap-6">
-            <a href="#blog" className="hover:text-zinc-200 transition-colors">blog</a>
-            <a href="#projects" className="hover:text-zinc-200 transition-colors">projects</a>
-            <a href="#socials" className="hover:text-zinc-200 transition-colors">socials</a>
+    <>
+      <div className="custom-cursor" data-cursor aria-hidden="true" />
+
+      <main className="portfolio-shell">
+        <header className="site-header reveal reveal-1">
+          <a className="wordmark" href="#top">ayush rout</a>
+          <nav aria-label="Primary navigation">
+            <a href="#about">about</a>
+            <a href="#work">work</a>
+            <a href="#notes">notes</a>
+            <a href="#contact">connect</a>
           </nav>
+          <button className="theme-toggle" onClick={() => setDark((value) => !value)} aria-label="Toggle color theme">
+            <span aria-hidden="true">{dark ? "☼" : "●"}</span>
+          </button>
         </header>
 
-        {/* Bio */}
-        <section className="mb-20 space-y-4 text-zinc-400 text-base leading-relaxed">
-          <p className="text-zinc-200">hi, i&apos;m ayush.</p>
-          <p>
-            i build software and educational tools powered by artificial intelligence. currently refining developer experiences and modern web apps.
-          </p>
+        <section id="top" className="hero reveal reveal-2">
+          <p className="eyebrow">developer · designer · student</p>
+          <h1>
+            I build thoughtful
+            <em> digital products.</em>
+          </h1>
+          <div className="hero-meta">
+            <p>
+              I&apos;m Ayush, a 14-year-old developer in the Bay Area creating AI-powered education tools, iOS apps, and experimental web products.
+            </p>
+            <span>Morgan Hill, California</span>
+          </div>
         </section>
 
-        {/* Selected Work */}
-        <section className="space-y-6">
-          <h2 className="text-sm text-zinc-500 font-normal">selected work</h2>
-          <div className="border-t border-zinc-800/60 divide-y divide-zinc-800/60">
-            {projects.map((project, idx) => (
-              <a
-                key={idx}
-                href={project.link}
-                className="flex items-center justify-between py-4 group hover:bg-zinc-900/40 px-2 rounded transition-colors"
-              >
-                <span className="font-medium text-zinc-200 group-hover:text-white">
-                  {project.name}
-                </span>
-                <div className="flex items-center gap-4 text-sm text-zinc-500">
-                  <span>{project.description}</span>
-                  <span className="text-zinc-600 group-hover:text-zinc-300 transition-colors">↗</span>
+        <section id="about" className="section-grid reveal reveal-3">
+          <div className="section-index">01 / about</div>
+          <div className="section-copy large-copy">
+            <p>
+              I care about making technology feel <em>clear, useful, and crafted.</em> My work sits where product thinking, engineering, and visual design meet.
+            </p>
+            <p className="muted-copy">
+              I build with SwiftUI, Next.js, TypeScript, React, Firebase, and AI APIs. Most of my ideas begin as a problem I personally want solved, then become products other students can use.
+            </p>
+          </div>
+        </section>
+
+        <section id="work" className="work-section reveal reveal-4">
+          <div className="section-heading">
+            <span>02 / selected work</span>
+            <span>{String(projects.length).padStart(2, "0")} projects</span>
+          </div>
+
+          <div className="project-list">
+            {projects.map((project, index) => (
+              <a className="project-row" href={project.href} key={project.name} target={project.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+                <span className="project-number">0{index + 1}</span>
+                <div className="project-main">
+                  <h2>{project.name}</h2>
+                  <p>{project.description}</p>
+                </div>
+                <div className="project-side">
+                  <span>{project.label}</span>
+                  <span className="arrow">↗</span>
                 </div>
               </a>
             ))}
           </div>
         </section>
 
-        {/* Spotify Overlay */}
-        <SpotifyPlayer />
+        <section id="notes" className="section-grid notes-section reveal reveal-5">
+          <div className="section-index">03 / notes</div>
+          <div className="notes-list">
+            {notes.map(([number, text]) => (
+              <article key={number}>
+                <span>{number}</span>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="music-section reveal reveal-5" aria-label="Music player">
+          <div>
+            <p className="eyebrow">currently playing</p>
+            <h2>Losing Interest (Sped Up)</h2>
+            <p>Shiloh Dynasty, LIT cosmo</p>
+          </div>
+          <iframe
+            title="Spotify player"
+            src="https://open.spotify.com/embed/track/3P3UA61WRQqwCXaoFOTENd?utm_source=generator&theme=0"
+            width="100%"
+            height="152"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          />
+        </section>
+
+        <footer id="contact" className="site-footer reveal reveal-5">
+          <div>
+            <p className="eyebrow">04 / connect</p>
+            <h2>Have an idea worth building?</h2>
+          </div>
+          <div className="footer-links">
+            <a href="mailto:hello@ayushrout.xyz">email ↗</a>
+            <a href="https://github.com/530ayush12" target="_blank" rel="noreferrer">github ↗</a>
+            <a href="https://x.com/ayushrout201230" target="_blank" rel="noreferrer">x / twitter ↗</a>
+          </div>
+          <div className="footer-bottom">
+            <span>© {new Date().getFullYear()} Ayush Rout</span>
+            <a href="#top">back to top ↑</a>
+          </div>
+        </footer>
       </main>
-    </Gateway>
+    </>
   );
 }
