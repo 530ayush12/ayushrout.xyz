@@ -5,9 +5,9 @@ export const metadata: Metadata = { title: "Contact — Ayush Rout", description
 
 export default function ContactPage() {
   return (
-    <InteriorShell pageNumber="05">
+    <InteriorShell pageNumber="06">
       <section className="interior-hero contact-hero">
-        <p className="eyebrow">05 / correspondence</p>
+        <p className="eyebrow">06 / correspondence</p>
         <h1>Let&apos;s make<br /><em>something real.</em></h1>
         <p className="interior-lede">I&apos;m always open to talking about startups, artificial intelligence, or design.</p>
       </section>

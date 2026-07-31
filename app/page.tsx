@@ -192,6 +192,7 @@ export default function Home() {
           <nav aria-label="Primary navigation">
             <a href="/about">about</a>
             <a href="/work">work</a>
+            <a href="/art">art</a>
             <a href="/writing">writing</a>
             <a href="/contact">connect</a>
           </nav>

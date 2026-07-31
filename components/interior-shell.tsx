@@ -8,6 +8,7 @@ const navigation = [
   ["/", "index"],
   ["/about", "about"],
   ["/work", "work"],
+  ["/art", "art"],
   ["/writing", "writing"],
   ["/contact", "connect"],
 ];
@@ -62,7 +63,7 @@ export function InteriorShell({ children, pageNumber }: { children: React.ReactN
       <div className="interior-orbit" aria-hidden="true"><span /><span /></div>
       <main className="interior-main">{children}</main>
       <footer className="interior-footer">
-        <span>{pageNumber} / 05</span>
+        <span>{pageNumber} / 06</span>
         <Link href="/">return to index ↗</Link>
       </footer>
     </div>

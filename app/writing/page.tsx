@@ -60,9 +60,9 @@ export default function WritingPage() {
   const [selected, setSelected] = useState<Essay>(essays[0]);
 
   return (
-    <InteriorShell pageNumber="04">
+    <InteriorShell pageNumber="05">
       <section className="interior-hero compact">
-        <p className="eyebrow">04 / product stories</p>
+        <p className="eyebrow">05 / product stories</p>
         <h1>Building in<br /><em>public.</em></h1>
       </section>
       <section className="writing-layout" data-scroll-depth>
