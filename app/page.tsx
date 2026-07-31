@@ -263,7 +263,17 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="home-footer depth-section" data-reveal-3d>
+        <footer className="home-footer">
+          <div className="home-footer-identity">
+            <div>
+              <p className="eyebrow">ayush rout</p>
+              <h2>made with <em>care.</em></h2>
+            </div>
+            <div className="home-footer-meta">
+              <span>developer · designer · student</span>
+              <span>morgan hill, california</span>
+            </div>
+          </div>
           <div className="footer-bottom">
             <span>© {new Date().getFullYear()} Ayush Rout</span>
             <a href="#top">back to top ↑</a>
