@@ -63,7 +63,7 @@ export default function WritingPage() {
     <InteriorShell pageNumber="05">
       <section className="interior-hero compact">
         <p className="eyebrow">05 / product stories</p>
-        <h1>Building in<br /><em>public.</em></h1>
+        <h1>notes from<br /><em>building.</em></h1>
       </section>
       <section className="writing-layout" data-scroll-depth>
         <div className="essay-index">

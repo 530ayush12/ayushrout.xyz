@@ -17,7 +17,7 @@ export default function WorkPage() {
     <InteriorShell pageNumber="03">
       <section className="interior-hero compact">
         <p className="eyebrow">03 / selected work</p>
-        <h1>Ideas made<br /><em>tangible.</em></h1>
+        <h1>things i&apos;ve<br /><em>made.</em></h1>
       </section>
       <section className="interior-projects" data-scroll-depth>
         {projects.map(([year, name, description, href, label], index) => (

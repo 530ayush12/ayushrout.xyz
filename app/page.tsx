@@ -210,8 +210,8 @@ export default function Home() {
           </div>
           <p className="eyebrow hero-eyebrow">developer · designer · student</p>
           <h1 className="hero-title">
-            <span>I build thoughtful</span>
-            <em> digital products.</em>
+            <span>i make useful things</span>
+            <em> with care.</em>
           </h1>
           <div className="hero-meta">
             <p>
@@ -275,7 +275,7 @@ export default function Home() {
         <footer id="contact" className="site-footer depth-section" data-reveal-3d>
           <div>
             <p className="eyebrow">04 / connect</p>
-            <h2>Have an idea worth building?</h2>
+            <h2>have an idea worth building?</h2>
           </div>
           <div className="footer-links">
             <a href="mailto:ayushrout.ar@gmail.com">email ↗</a>

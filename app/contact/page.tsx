@@ -8,7 +8,7 @@ export default function ContactPage() {
     <InteriorShell pageNumber="06">
       <section className="interior-hero contact-hero">
         <p className="eyebrow">06 / correspondence</p>
-        <h1>Let&apos;s make<br /><em>something real.</em></h1>
+        <h1>say<br /><em>hello.</em></h1>
         <p className="interior-lede">I&apos;m always open to talking about startups, artificial intelligence, or design.</p>
       </section>
       <section className="contact-grid" data-scroll-depth>

@@ -9,7 +9,7 @@ export default function AboutPage() {
     <InteriorShell pageNumber="02">
       <section className="interior-hero">
         <p className="eyebrow">02 / trajectory</p>
-        <h1>Curiosity,<br /><em>shipped.</em></h1>
+        <h1>curious by<br /><em>default.</em></h1>
         <p className="interior-lede">I&apos;m 14 and I build like a founder: solve real problems, ship, listen, and keep improving the system.</p>
       </section>
       <section className="about-story" data-scroll-depth>

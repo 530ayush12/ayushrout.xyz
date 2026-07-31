@@ -21,7 +21,7 @@ export default function ArtPage() {
     <InteriorShell pageNumber="04">
       <section className="interior-hero art-hero">
         <p className="eyebrow">04 / dither studies</p>
-        <h1>Pixels with<br /><em>texture.</em></h1>
+        <h1>images,<br /><em>reimagined.</em></h1>
         <p className="interior-lede">A selection of images transformed with DitherStudio—exploring limited palettes, visible pattern, and the character inside digital noise.</p>
       </section>
       <section className="art-grid" data-scroll-depth aria-label="Selected DitherStudio artwork">
