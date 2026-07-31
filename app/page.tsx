@@ -210,7 +210,7 @@ export default function Home() {
         </section>
 
         <section id="about" className="section-grid depth-section" data-reveal-3d>
-          <div className="section-index">01 / about</div>
+          <div className="section-index">about</div>
           <div className="section-copy large-copy">
             <p>
               I care about making technology feel <em>clear, useful, and crafted.</em> My work sits where product thinking, engineering, and visual design meet.
@@ -223,8 +223,7 @@ export default function Home() {
 
         <section id="work" className="work-section depth-section" data-reveal-3d>
           <div className="section-heading">
-            <span>02 / work</span>
-            <span>selected projects · 2026</span>
+            <span>work</span>
           </div>
           <div className="project-list">
             {projects.map((project, index) => (
@@ -253,7 +252,7 @@ export default function Home() {
         </section>
 
         <section id="notes" className="section-grid notes-section depth-section" data-reveal-3d>
-          <div className="section-index">03 / notes</div>
+          <div className="section-index">notes</div>
           <div className="notes-list">
             {notes.map(([number, text]) => (
               <article key={number}>
@@ -264,17 +263,7 @@ export default function Home() {
           </div>
         </section>
 
-        <footer id="contact" className="site-footer depth-section" data-reveal-3d>
-          <div>
-            <p className="eyebrow">04 / contact</p>
-            <h2>have an idea worth building?</h2>
-          </div>
-          <div className="footer-links">
-            <a href="mailto:ayushrout.ar@gmail.com">email ↗</a>
-            <a href="https://github.com/530ayush12" target="_blank" rel="noreferrer">github / 530ayush12 ↗</a>
-            <a href="https://www.instagram.com/ayushrout2012/" target="_blank" rel="noreferrer">instagram / @ayushrout2012 ↗</a>
-            <a href="https://x.com/ayushrout201230" target="_blank" rel="noreferrer">x / twitter ↗</a>
-          </div>
+        <footer className="home-footer depth-section" data-reveal-3d>
           <div className="footer-bottom">
             <span>© {new Date().getFullYear()} Ayush Rout</span>
             <a href="#top">back to top ↑</a>

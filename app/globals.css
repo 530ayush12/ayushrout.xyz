@@ -262,6 +262,9 @@ button {
   color: var(--muted);
 }
 
+.home-footer { padding: 70px 0 30px; }
+.home-footer .footer-bottom { grid-column: auto; }
+
 .hero h1 {
   max-width: 940px;
   margin: 0;
