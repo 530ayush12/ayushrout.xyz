@@ -1,35 +1,145 @@
 # ayushrout.xyz
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+Official personal website of **Ayush Rout**.
 
-## Built with v0
+> Building modern web experiences, AI-powered products, iOS apps, and experimental projects.
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+## Overview
 
-[Continue working on v0 →](https://v0.app/chat/projects/prj_dqDSauCY3kyjLmG1nOrVHyaXmCFG)
+This website serves as my personal portfolio and development hub, showcasing:
 
-## Getting Started
+- Projects
+- Apps
+- Experiments
+- Open-source work
+- Contact information
 
-First, run the development server:
+The site is designed with a clean aesthetic, immersive interactions, smooth animations, and responsive layouts.
+
+---
+
+## Featured Projects
+
+### SereneQuests
+
+An AI-powered mental wellness companion focused on mindfulness, breathing, reflection, and emotional wellbeing.
+
+---
+
+### GeniusMath AI
+
+An AI-powered mathematics learning platform featuring:
+
+- Adaptive practice
+- Step-by-step explanations
+- Personalized quizzes
+- Competition preparation
+- Modern learning interface
+
+---
+
+### DitherStudio
+
+Creative design and development experiments including visual effects, shaders, graphics, and interactive web experiences.
+
+---
+
+## Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Vercel
+- Framer Motion
+- Three.js
+- OpenAI APIs
+
+---
+
+## Development
+
+Clone the repository:
+
+```bash
+git clone https://github.com/ayushrout12/ayushrout.xyz.git
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run locally:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Build for production:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-## Learn More
+---
 
-To learn more, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+Hosted on **Vercel**.
 
-<a href="https://v0.app/chat/api/kiro/clone/ayushrout12/v0-ayushrout-xyz-build" alt="Open in Kiro"><img src="https://pdgvvgmkdvyeydso.public.blob.vercel-storage.com/open%20in%20kiro.svg?sanitize=true" /></a>
+Every push to the main branch automatically deploys the latest version.
+
+---
+
+## Project Structure
+
+```
+/
+├── app/
+├── components/
+├── public/
+├── styles/
+├── lib/
+├── hooks/
+└── README.md
+```
+
+---
+
+## Goals
+
+This website is continually evolving and serves as a playground for:
+
+- Modern UI/UX
+- AI integration
+- Interactive design
+- 3D graphics
+- Animation
+- Performance optimization
+- Accessibility
+
+---
+
+## Contributing
+
+While this is primarily a personal website, suggestions and issue reports are welcome.
+
+Please open an Issue before submitting significant changes.
+
+---
+
+## Contact
+
+Website
+
+https://ayushrout.xyz
+
+GitHub
+
+https://github.com/ayushrout12
+
+---
+
+© 2026 Ayush Rout. All rights reserved.
