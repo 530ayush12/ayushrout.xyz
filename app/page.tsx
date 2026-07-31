@@ -222,6 +222,10 @@ export default function Home() {
         </section>
 
         <section id="work" className="work-section depth-section" data-reveal-3d>
+          <div className="section-heading">
+            <span>02 / work</span>
+            <span>selected projects · 2026</span>
+          </div>
           <div className="project-list">
             {projects.map((project, index) => (
               <article className="project-row" key={project.name} data-project-card>
