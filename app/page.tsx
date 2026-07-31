@@ -180,10 +180,10 @@ export default function Home() {
           <a className="wordmark" href="#top">ayush rout</a>
           <nav aria-label="Primary navigation">
             <Link href="/about">about</Link>
-            <Link href="/work">work</Link>
+            <Link href="/journey">journey</Link>
             <Link href="/art">art</Link>
             <Link href="/writing">writing</Link>
-            <Link href="/contact">connect</Link>
+            <Link href="/contact">contact</Link>
           </nav>
           <button className="theme-toggle" onClick={() => setDark((value) => !value)} aria-label="Toggle color theme">
             <span aria-hidden="true">{dark ? "☼" : "●"}</span>
@@ -262,12 +262,13 @@ export default function Home() {
 
         <footer id="contact" className="site-footer depth-section" data-reveal-3d>
           <div>
-            <p className="eyebrow">04 / connect</p>
+            <p className="eyebrow">04 / contact</p>
             <h2>have an idea worth building?</h2>
           </div>
           <div className="footer-links">
             <a href="mailto:ayushrout.ar@gmail.com">email ↗</a>
-            <a href="https://github.com/530ayush12" target="_blank" rel="noreferrer">github ↗</a>
+            <a href="https://github.com/530ayush12" target="_blank" rel="noreferrer">github / 530ayush12 ↗</a>
+            <a href="https://www.instagram.com/ayushrout2012/" target="_blank" rel="noreferrer">instagram / @ayushrout2012 ↗</a>
             <a href="https://x.com/ayushrout201230" target="_blank" rel="noreferrer">x / twitter ↗</a>
           </div>
           <div className="footer-bottom">

@@ -14,7 +14,8 @@ export default function ContactPage() {
       <section className="contact-grid" data-scroll-depth>
         <a href="mailto:ayushrout.ar@gmail.com"><span>email</span>ayushrout.ar@gmail.com ↗</a>
         <a href="https://x.com/ayushrout2012" target="_blank" rel="noreferrer"><span>x / twitter</span>@ayushrout2012 ↗</a>
-        <a href="https://github.com/ayushrout12" target="_blank" rel="noreferrer"><span>github</span>ayushrout12 ↗</a>
+        <a href="https://github.com/530ayush12" target="_blank" rel="noreferrer"><span>github</span>530ayush12 ↗</a>
+        <a href="https://www.instagram.com/ayushrout2012/" target="_blank" rel="noreferrer"><span>instagram</span>@ayushrout2012 ↗</a>
       </section>
     </InteriorShell>
   );

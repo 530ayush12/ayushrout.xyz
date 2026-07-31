@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-const SCENE_SELECTOR = "[data-scroll-depth], [data-project-card], .art-piece, .notes-list article";
+const SCENE_SELECTOR = "[data-scroll-depth], [data-project-card], .art-piece, .notes-list article, .journey-milestone";
 
 export function ScrollScene() {
   const pathname = usePathname();

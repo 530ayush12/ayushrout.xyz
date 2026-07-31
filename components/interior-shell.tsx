@@ -7,10 +7,10 @@ import { useEffect, useState } from "react";
 const navigation = [
   ["/", "index"],
   ["/about", "about"],
-  ["/work", "work"],
+  ["/journey", "journey"],
   ["/art", "art"],
   ["/writing", "writing"],
-  ["/contact", "connect"],
+  ["/contact", "contact"],
 ];
 
 export function InteriorShell({ children, pageNumber }: { children: React.ReactNode; pageNumber: string }) {
