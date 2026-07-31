@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import styles from "./home.module.css";
 
 const projects = [
@@ -190,11 +191,11 @@ export default function Home() {
         <header className="site-header reveal reveal-1">
           <a className="wordmark" href="#top">ayush rout</a>
           <nav aria-label="Primary navigation">
-            <a href="/about">about</a>
-            <a href="/work">work</a>
-            <a href="/art">art</a>
-            <a href="/writing">writing</a>
-            <a href="/contact">connect</a>
+            <Link href="/about">about</Link>
+            <Link href="/work">work</Link>
+            <Link href="/art">art</Link>
+            <Link href="/writing">writing</Link>
+            <Link href="/contact">connect</Link>
           </nav>
           <button className="theme-toggle" onClick={() => setDark((value) => !value)} aria-label="Toggle color theme">
             <span aria-hidden="true">{dark ? "☼" : "●"}</span>

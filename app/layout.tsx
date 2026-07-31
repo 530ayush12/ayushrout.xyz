@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Newsreader, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { AccessBoundary } from "@/components/access-boundary";
 import "./globals.css";
 
 const newsreader = Newsreader({
@@ -55,7 +56,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${newsreader.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <body>
-        {children}
+        <AccessBoundary>{children}</AccessBoundary>
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>

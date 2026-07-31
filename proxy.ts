@@ -23,7 +23,9 @@ export async function proxy(request: NextRequest) {
   );
 
   if (!authenticated) {
-    return NextResponse.redirect(new URL("/enter", request.url));
+    const enterUrl = new URL("/enter", request.url);
+    enterUrl.searchParams.set("next", `${pathname}${request.nextUrl.search}`);
+    return NextResponse.redirect(enterUrl);
   }
 
   return NextResponse.next();
