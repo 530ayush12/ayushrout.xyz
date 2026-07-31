@@ -112,19 +112,6 @@ button {
   margin: 0 auto;
   overflow: clip;
 }
-.portfolio-shell::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: .62;
-  background:
-    radial-gradient(ellipse at 79% 47%, transparent 0 9%, var(--line) 9.1% 9.25%, transparent 9.4% 17%, var(--line) 17.1% 17.25%, transparent 17.4% 27%, var(--line) 27.1% 27.2%, transparent 27.4% 39%, var(--line) 39.1% 39.2%, transparent 39.4% 54%, var(--line) 54.1% 54.2%, transparent 54.4%);
-  background-position: center var(--page-scroll-y, 0px);
-  mask-image: linear-gradient(90deg, transparent 5%, #000 42%, #000 100%);
-}
-
 .site-header {
   min-height: 96px;
   display: grid;
@@ -1005,7 +992,6 @@ button {
   .interior-lede { grid-column: 1; }
   .interior-lede { align-self: end; }
   .interior-orbit { width: 120vw; right: -65vw; opacity: .55; }
-  .portfolio-shell::before { opacity: .44; background-position: 18% var(--page-scroll-y, 0px); mask-image: linear-gradient(90deg, transparent, #000 24%, #000); }
   .about-story,
   .writing-layout,
   .contact-grid { grid-template-columns: 1fr; }
@@ -1032,7 +1018,6 @@ button {
 @media (prefers-reduced-motion: reduce) {
   [data-scroll-depth] { opacity: 1; transform: none; }
   .interior-orbit { animation: none; }
-  .portfolio-shell::before { background-position: center; }
   .journey-rail > span { transform: scaleY(1); transition: none; }
   .journey-milestone,
   .journey-milestone:hover { opacity: 1; transform: none; transition: none; }

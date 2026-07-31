@@ -20,13 +20,13 @@ const milestones = [
   },
   {
     marker: "13",
-    title: "shipping for real",
-    copy: "Shipped GeniusMath AI and SereneQuests on the App Store, trained neural networks, built SaaS products, and won Stanford GSB LISA with Rooted AI.",
+    title: "from ideas to systems",
+    copy: "Started planning seriously, thinking through real problems, and building ideas into products. I learned to move from a rough concept to a clear plan, a working prototype, and a thoughtful experience.",
   },
   {
     marker: "14",
-    title: "momentum",
-    copy: "Reached the podium at Chamath's 8090 Hackathon, placed second at the Composio + Nebius Builders Ship Hackathon, presented at events, received $20k in E2B credits, and built Lotus, DitherStudio, Loopy, SuperCompress, ASCII Skill, Pincer, and Jasmine.",
+    title: "shipping into the world",
+    copy: "Shipped SereneQuests on the web and iOS, launched GeniusMath AI on the App Store, and built trylotus.dev. Seeing people use what I made turned building from an experiment into a commitment.",
   },
   {
     marker: "now",
