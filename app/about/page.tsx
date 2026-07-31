@@ -1,51 +1,28 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import Image from "next/image";
+import { InteriorShell } from "@/components/interior-shell";
 
-export const metadata: Metadata = {
-  title: "About - Ayush Rout",
-  description: "Learn more about Ayush Rout, a 14-year-old developer and entrepreneur.",
-};
+export const metadata: Metadata = { title: "About — Ayush Rout", description: "Learn more about Ayush Rout, a developer and entrepreneur." };
 
 export default function AboutPage() {
   return (
-    <div className="max-w-2xl">
-      <p className="mb-12 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-        02 / Trajectory
-      </p>
-
-      <div className="space-y-8 text-lg leading-relaxed text-foreground/80 md:text-xl">
-        <p>
-          i am 14 and i build like a founder. the goal is not to make things look
-          impressive in isolation. it is to solve real problems, ship, and keep
-          improving the system.
-        </p>
-        <p>
-          my journey started with building ios apps — mathiq+, scicore, and
-          quizai+. that taught me how to turn an idea into a product, how to ship
-          it, and how to listen to the people actually using it.
-        </p>
-
-        <div className="py-8">
-          <Image
-            src="/images/ayush.jpg"
-            alt="Ayush Rout"
-            width={800}
-            height={600}
-            className="h-auto w-full rounded-md object-cover shadow-md"
-            priority
-          />
-          <p className="mt-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-            Fig 1. Momentum over perfection.
-          </p>
+    <InteriorShell pageNumber="02">
+      <section className="interior-hero">
+        <p className="eyebrow">02 / trajectory</p>
+        <h1>Curiosity,<br /><em>shipped.</em></h1>
+        <p className="interior-lede">I&apos;m 14 and I build like a founder: solve real problems, ship, listen, and keep improving the system.</p>
+      </section>
+      <section className="about-story" data-scroll-depth>
+        <div className="about-portrait">
+          <Image src="/images/ayush.jpg" alt="Ayush Rout" width={800} height={600} priority />
+          <span>Fig. 01 — momentum over perfection</span>
         </div>
-
-        <p>
-          now i am focused on the intersection of artificial intelligence,
-          product-level design, and execution. that is why i am building lotus and
-          the rest of the work around it.
-        </p>
-        <p>based in the united states.</p>
-      </div>
-    </div>
+        <div className="interior-prose">
+          <p>My journey started with iOS apps—MathIQ+, SciCore, and QuizAI+. They taught me how to turn an idea into a product and listen to the people actually using it.</p>
+          <p>Now I&apos;m focused on the intersection of artificial intelligence, product-level design, and execution. That&apos;s why I&apos;m building Lotus and the rest of the work around it.</p>
+          <p className="muted-copy">Based in the United States.</p>
+        </div>
+      </section>
+    </InteriorShell>
   );
 }

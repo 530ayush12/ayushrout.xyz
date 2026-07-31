@@ -27,6 +27,12 @@ const projects = [
     description: "An AI website builder focused on fast generation, live previews, publishing, and polished design output.",
     links: [{ label: "Website", href: "https://trylotus.dev" }],
   },
+  {
+    name: "DitherStudio",
+    label: "web · creative tools",
+    description: "A focused studio for turning images into expressive dithered artwork with a fast, visual workflow.",
+    links: [{ label: "Open project", href: "https://ditherstudio.trylotus.dev" }],
+  },
 ];
 
 const notes = [
@@ -42,9 +48,103 @@ export default function Home() {
   useEffect(() => {
     const savedTheme = localStorage.getItem("ayush-theme");
     const nextDark = savedTheme ? savedTheme === "dark" : true;
+    const savedPlayerState = localStorage.getItem("ayush-spotify-minimized");
     setDark(nextDark);
     document.documentElement.dataset.theme = nextDark ? "dark" : "light";
-    setPlayerMinimized(localStorage.getItem("ayush-spotify-minimized") === "true");
+    setPlayerMinimized(
+      savedPlayerState === null
+        ? matchMedia("(max-width: 600px)").matches
+        : savedPlayerState === "true",
+    );
+  }, []);
+
+  useEffect(() => {
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+    const coarsePointer = matchMedia("(pointer: coarse)");
+    const revealTargets = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-reveal-3d]"),
+    );
+
+    if (reducedMotion.matches) {
+      revealTargets.forEach((target) => target.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -10%", threshold: 0.12 },
+    );
+
+    revealTargets.forEach((target) => observer.observe(target));
+
+    if (coarsePointer.matches) {
+      return () => observer.disconnect();
+    }
+
+    const hero = document.querySelector<HTMLElement>("[data-hero-stage]");
+    const rows = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-project-card]"),
+    );
+    let frame = 0;
+
+    const setHeroPerspective = (event: PointerEvent) => {
+      if (!hero) return;
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const bounds = hero.getBoundingClientRect();
+        const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+        const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+        hero.style.setProperty("--hero-rx", `${(-y * 3.5).toFixed(2)}deg`);
+        hero.style.setProperty("--hero-ry", `${(x * 5).toFixed(2)}deg`);
+        hero.style.setProperty("--hero-x", `${(x * 12).toFixed(2)}px`);
+        hero.style.setProperty("--hero-y", `${(y * 10).toFixed(2)}px`);
+      });
+    };
+
+    const resetHeroPerspective = () => {
+      hero?.style.removeProperty("--hero-rx");
+      hero?.style.removeProperty("--hero-ry");
+      hero?.style.removeProperty("--hero-x");
+      hero?.style.removeProperty("--hero-y");
+    };
+
+    const rowCleanups = rows.map((row) => {
+      const tilt = (event: PointerEvent) => {
+        const bounds = row.getBoundingClientRect();
+        const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+        const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+        row.style.setProperty("--row-rx", `${(-y * 2.2).toFixed(2)}deg`);
+        row.style.setProperty("--row-ry", `${(x * 3).toFixed(2)}deg`);
+      };
+      const reset = () => {
+        row.style.removeProperty("--row-rx");
+        row.style.removeProperty("--row-ry");
+      };
+      row.addEventListener("pointermove", tilt);
+      row.addEventListener("pointerleave", reset);
+      return () => {
+        row.removeEventListener("pointermove", tilt);
+        row.removeEventListener("pointerleave", reset);
+      };
+    });
+
+    hero?.addEventListener("pointermove", setHeroPerspective);
+    hero?.addEventListener("pointerleave", resetHeroPerspective);
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+      hero?.removeEventListener("pointermove", setHeroPerspective);
+      hero?.removeEventListener("pointerleave", resetHeroPerspective);
+      rowCleanups.forEach((cleanup) => cleanup());
+    };
   }, []);
 
   useEffect(() => {
@@ -90,20 +190,25 @@ export default function Home() {
         <header className="site-header reveal reveal-1">
           <a className="wordmark" href="#top">ayush rout</a>
           <nav aria-label="Primary navigation">
-            <a href="#about">about</a>
-            <a href="#work">work</a>
-            <a href="#notes">notes</a>
-            <a href="#contact">connect</a>
+            <a href="/about">about</a>
+            <a href="/work">work</a>
+            <a href="/writing">writing</a>
+            <a href="/contact">connect</a>
           </nav>
           <button className="theme-toggle" onClick={() => setDark((value) => !value)} aria-label="Toggle color theme">
             <span aria-hidden="true">{dark ? "☼" : "●"}</span>
           </button>
         </header>
 
-        <section id="top" className="hero reveal reveal-2">
-          <p className="eyebrow">developer · designer · student</p>
-          <h1>
-            I build thoughtful
+        <section id="top" className="hero reveal reveal-2" data-hero-stage>
+          <div className="hero-depth" aria-hidden="true">
+            <span className="hero-depth-plane hero-depth-plane-1" />
+            <span className="hero-depth-plane hero-depth-plane-2" />
+            <span className="hero-depth-orbit" />
+          </div>
+          <p className="eyebrow hero-eyebrow">developer · designer · student</p>
+          <h1 className="hero-title">
+            <span>I build thoughtful</span>
             <em> digital products.</em>
           </h1>
           <div className="hero-meta">
@@ -114,7 +219,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="about" className="section-grid reveal reveal-3">
+        <section id="about" className="section-grid depth-section" data-reveal-3d>
           <div className="section-index">01 / about</div>
           <div className="section-copy large-copy">
             <p>
@@ -126,10 +231,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="work" className="work-section reveal reveal-4">
+        <section id="work" className="work-section depth-section" data-reveal-3d>
           <div className="project-list">
             {projects.map((project, index) => (
-              <article className="project-row" key={project.name}>
+              <article className="project-row" key={project.name} data-project-card>
                 <span className="project-number">0{index + 1}</span>
                 <div className="project-main">
                   <h2>{project.name}</h2>
@@ -153,7 +258,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="notes" className="section-grid notes-section reveal reveal-5">
+        <section id="notes" className="section-grid notes-section depth-section" data-reveal-3d>
           <div className="section-index">03 / notes</div>
           <div className="notes-list">
             {notes.map(([number, text]) => (
@@ -165,7 +270,7 @@ export default function Home() {
           </div>
         </section>
 
-        <footer id="contact" className="site-footer reveal reveal-5">
+        <footer id="contact" className="site-footer depth-section" data-reveal-3d>
           <div>
             <p className="eyebrow">04 / connect</p>
             <h2>Have an idea worth building?</h2>
@@ -201,7 +306,7 @@ export default function Home() {
         <div className={styles.embedShell} aria-hidden={playerMinimized}>
           <iframe
             title="Spotify player"
-            src="https://open.spotify.com/embed/track/2f3xoAouZoP08h9jSRgf6O?utm_source=generator&theme=0"
+            src="https://open.spotify.com/embed/track/469kz2Vls0uvgMpFsOfRpu?utm_source=generator&theme=0"
             width="100%"
             height="152"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"

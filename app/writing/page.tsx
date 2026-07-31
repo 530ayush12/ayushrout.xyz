@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { InteriorShell } from "@/components/interior-shell";
 
 type Essay = {
   date: string;
@@ -59,41 +60,31 @@ export default function WritingPage() {
   const [selected, setSelected] = useState<Essay>(essays[0]);
 
   return (
-    <div className="w-full max-w-2xl">
-      <p className="mb-12 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-        04 / Notes &amp; Essays
-      </p>
-
-      <div className="flex flex-col gap-8 md:gap-12">
+    <InteriorShell pageNumber="04">
+      <section className="interior-hero compact">
+        <p className="eyebrow">04 / notes &amp; essays</p>
+        <h1>Thinking in<br /><em>public.</em></h1>
+      </section>
+      <section className="writing-layout" data-scroll-depth>
+        <div className="essay-index">
         {essays.map((essay) => (
           <button
             type="button"
             key={essay.title}
             onClick={() => setSelected(essay)}
-            className={`group flex cursor-pointer flex-col gap-2 text-left transition-opacity duration-300 ${
-              selected.title === essay.title
-                ? "opacity-100"
-                : "opacity-60 hover:opacity-100"
-            }`}
+            className={selected.title === essay.title ? "is-active" : ""}
           >
-            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-              {essay.date}
-            </span>
-            <h3 className="text-xl tracking-tight transition-all duration-300 group-hover:italic md:text-2xl">
-              {essay.title}
-            </h3>
+            <span>{essay.date}</span>
+            <strong>{essay.title}</strong>
           </button>
         ))}
-      </div>
-
-      <div
-        key={selected.title}
-        className="mt-10 animate-page-in space-y-6 text-lg leading-relaxed text-foreground/90 md:mt-14 md:text-xl"
-      >
-        {selected.content.map((para, idx) => (
-          <p key={idx}>{para}</p>
-        ))}
-      </div>
-    </div>
+        </div>
+        <article key={selected.title} className="essay-body">
+          <p className="eyebrow">{selected.date}</p>
+          <h2>{selected.title}</h2>
+          {selected.content.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        </article>
+      </section>
+    </InteriorShell>
   );
 }
