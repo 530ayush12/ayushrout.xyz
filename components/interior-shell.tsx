@@ -61,7 +61,7 @@ export function InteriorShell({ children, pageNumber }: { children: React.ReactN
         </button>
       </header>
       <div className="interior-orbit" aria-hidden="true"><span /><span /></div>
-      <main className="interior-main">{children}</main>
+      <main className="interior-main" key={pathname}>{children}</main>
       <footer className="interior-footer">
         <span>{pageNumber} / 06</span>
         <Link href="/">return to index ↗</Link>

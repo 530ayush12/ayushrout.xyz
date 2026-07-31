@@ -4,12 +4,33 @@ import { InteriorShell } from "@/components/interior-shell";
 export const metadata: Metadata = { title: "Work — Ayush Rout", description: "Selected work by Ayush Rout." };
 
 const projects = [
-  ["Now", "Lotus", "AI design tool that turns a prompt into a working website or app.", "https://trylotus.dev", "Live"],
-  ["Now", "DitherStudio", "A focused studio for transforming images into expressive dithered artwork.", "https://ditherstudio.trylotus.dev", "Open"],
-  ["2026", "SereneQuests", "A calm AI companion for everyday wellness and healthier habits.", "https://serenequests.com", "Live"],
-  ["2026", "QuizAI+", "An AI study buddy with quizzes and immediate feedback.", "https://apps.apple.com/us/app/quizai/id6759224775", "App Store"],
-  ["2026", "SciCore", "Physics, chemistry, and biology through quick lessons and hands-on quizzes.", "https://apps.apple.com/us/app/scicore/id6757728466", "App Store"],
-  ["2025", "MathIQ+", "Daily math problems, timed challenges, and progress tracking.", "https://apps.apple.com/us/app/mathiq/id6756983614", "App Store"],
+  {
+    year: "now",
+    name: "Lotus",
+    description: "AI design tool that turns a prompt into a working website or app.",
+    links: [{ label: "website", href: "https://trylotus.dev" }],
+  },
+  {
+    year: "now",
+    name: "DitherStudio",
+    description: "A focused studio for transforming images into expressive dithered artwork.",
+    links: [{ label: "open studio", href: "https://ditherstudio.trylotus.dev" }],
+  },
+  {
+    year: "2026",
+    name: "GeniusMath AI",
+    description: "Adaptive math practice with custom quizzes, instant scoring, and clear explanations.",
+    links: [{ label: "app store", href: "https://apps.apple.com/us/app/geniusmath-ai/id6790629890" }],
+  },
+  {
+    year: "2026",
+    name: "SereneQuests",
+    description: "A calm AI companion for mindful conversations, everyday wellness, and healthier habits.",
+    links: [
+      { label: "website", href: "https://serenequests.com" },
+      { label: "app store", href: "https://apps.apple.com/us/app/serenequests/id6786419127" },
+    ],
+  },
 ];
 
 export default function WorkPage() {
@@ -20,13 +41,17 @@ export default function WorkPage() {
         <h1>things i&apos;ve<br /><em>made.</em></h1>
       </section>
       <section className="interior-projects" data-scroll-depth>
-        {projects.map(([year, name, description, href, label], index) => (
-          <a className="interior-project" href={href} target="_blank" rel="noreferrer" key={name}>
+        {projects.map((project, index) => (
+          <article className="interior-project" key={project.name}>
             <span className="project-number">{String(index + 1).padStart(2, "0")}</span>
-            <span className="project-year">{year}</span>
-            <span className="project-title">{name}<small>{description}</small></span>
-            <span className="project-link">{label} ↗</span>
-          </a>
+            <span className="project-year">{project.year}</span>
+            <span className="project-title">{project.name}<small>{project.description}</small></span>
+            <span className="project-links">
+              {project.links.map((link) => (
+                <a href={link.href} target="_blank" rel="noreferrer" key={link.href}>{link.label} ↗</a>
+              ))}
+            </span>
+          </article>
         ))}
       </section>
     </InteriorShell>

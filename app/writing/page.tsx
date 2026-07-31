@@ -45,11 +45,11 @@ const essays: Essay[] = [
   },
   {
     date: "Lessons learned",
-    title: "What My Education Apps Taught Me",
+    title: "What GeniusMath AI Taught Me",
     content: [
       "I began building education apps because I was already close to the problem. As a student, I knew how frustrating it felt when practice was repetitive, feedback arrived too late, or an explanation skipped the exact step I did not understand.",
-      "MathIQ+ taught me how important momentum is. A learner should be able to open the app, understand the next action immediately, and finish a meaningful challenge without navigating through layers of setup.",
-      "SciCore pushed me to organize complex subjects into smaller lessons and hands-on quizzes. QuizAI+ taught me how to use AI for adaptive questions and immediate feedback without letting the technology distract from the learning goal.",
+      "GeniusMath AI taught me how important momentum is. A learner should be able to open the app, understand the next action immediately, and finish a meaningful challenge without navigating through layers of setup.",
+      "Building its adaptive quizzes taught me how to use AI for custom difficulty, immediate feedback, and clear explanations without letting the technology distract from the learning goal.",
       "Across these products, I learned that more features do not automatically create a better learning experience. The best tools make the next step clear, respond to the learner, and explain mistakes without making them feel like failures.",
       "Those lessons now influence everything I build. Whether I am working on an AI design platform or a creative image tool, I still ask the same question: how can I make this complicated task feel simpler and more personal?",
     ],

@@ -18,7 +18,7 @@ export default function AboutPage() {
           <span>Fig. 01 — momentum over perfection</span>
         </div>
         <div className="interior-prose">
-          <p>My journey started with iOS apps—MathIQ+, SciCore, and QuizAI+. They taught me how to turn an idea into a product and listen to the people actually using it.</p>
+          <p>My journey started with iOS products like GeniusMath AI and SereneQuests. They taught me how to turn an idea into a product and listen to the people actually using it.</p>
           <p>Now I&apos;m focused on the intersection of artificial intelligence, product-level design, and execution. That&apos;s why I&apos;m building Lotus and the rest of the work around it.</p>
           <p className="muted-copy">Based in the United States.</p>
         </div>

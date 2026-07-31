@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import styles from "./home.module.css";
 
 const projects = [
   {
@@ -44,19 +43,12 @@ const notes = [
 
 export default function Home() {
   const [dark, setDark] = useState(true);
-  const [playerMinimized, setPlayerMinimized] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("ayush-theme");
     const nextDark = savedTheme ? savedTheme === "dark" : true;
-    const savedPlayerState = localStorage.getItem("ayush-spotify-minimized");
     setDark(nextDark);
     document.documentElement.dataset.theme = nextDark ? "dark" : "light";
-    setPlayerMinimized(
-      savedPlayerState === null
-        ? matchMedia("(max-width: 600px)").matches
-        : savedPlayerState === "true",
-    );
   }, []);
 
   useEffect(() => {
@@ -152,10 +144,6 @@ export default function Home() {
     document.documentElement.dataset.theme = dark ? "dark" : "light";
     localStorage.setItem("ayush-theme", dark ? "dark" : "light");
   }, [dark]);
-
-  useEffect(() => {
-    localStorage.setItem("ayush-spotify-minimized", String(playerMinimized));
-  }, [playerMinimized]);
 
   useEffect(() => {
     const cursor = document.querySelector<HTMLElement>("[data-cursor]");
@@ -289,33 +277,6 @@ export default function Home() {
         </footer>
       </main>
 
-      <aside
-        className={`${styles.floatingPlayer} ${playerMinimized ? styles.minimized : ""}`}
-        aria-label="Spotify player"
-      >
-        <button
-          type="button"
-          className={styles.spotifyToggle}
-          onClick={() => setPlayerMinimized((value) => !value)}
-          aria-label={playerMinimized ? "Expand Spotify player" : "Minimize Spotify player"}
-          title={playerMinimized ? "Expand Spotify player" : "Minimize Spotify player"}
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.58 14.42a.75.75 0 0 1-1.03.25c-2.82-1.72-6.37-2.11-10.55-1.16a.75.75 0 1 1-.33-1.46c4.57-1.04 8.5-.59 11.66 1.34.35.22.46.68.25 1.03Zm1.47-3.27a.94.94 0 0 1-1.29.31c-3.23-1.98-8.16-2.55-11.98-1.4a.94.94 0 1 1-.54-1.8c4.37-1.32 9.81-.68 13.5 1.58.44.27.58.85.31 1.31Zm.13-3.4C14.3 7.45 7.9 7.24 4.2 8.35a1.13 1.13 0 1 1-.65-2.16c4.25-1.28 11.34-1.03 15.78 1.6a1.13 1.13 0 0 1-1.15 1.96Z" />
-          </svg>
-        </button>
-
-        <div className={styles.embedShell} aria-hidden={playerMinimized}>
-          <iframe
-            title="Spotify player"
-            src="https://open.spotify.com/embed/track/469kz2Vls0uvgMpFsOfRpu?utm_source=generator&theme=0"
-            width="100%"
-            height="152"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-          />
-        </div>
-      </aside>
     </>
   );
 }
