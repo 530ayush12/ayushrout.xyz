@@ -34,6 +34,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://ayushrout.xyz"),
   title: "Ayush Rout — Developer & Designer",
   description: "Ayush Rout builds AI-powered education tools, iOS apps, and experimental web products.",
+  alternates: {
+    canonical: "/home",
+  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
@@ -42,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ayush Rout — Developer & Designer",
     description: "AI-powered education tools, iOS apps, and experimental web products.",
-    url: "https://ayushrout.xyz",
+    url: "https://ayushrout.xyz/home",
     siteName: "Ayush Rout",
     type: "website",
     images: [{ url: "/ayush.png", width: 1200, height: 630, alt: "Ayush Rout portfolio" }],
