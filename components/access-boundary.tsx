@@ -1,21 +1,25 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
 import styles from "@/app/enter/enter.module.css";
 
-// Intentionally lives only in this browser tab's JavaScript memory.
-// A full refresh creates a fresh module and locks the site again, while
-// App Router navigation keeps the unlocked state alive.
+// Normal password access intentionally lasts only for client-side navigation
+// in the current tab. Refreshing resets this value and shows the gateway again.
 let unlockedInThisTab = false;
 
-export function AccessBoundary({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-  const router = useRouter();
+export function AccessBoundary({
+  children,
+  persistentAccess = false,
+}: {
+  children: React.ReactNode;
+  persistentAccess?: boolean;
+}) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [unlocked, setUnlocked] = useState(unlockedInThisTab);
+  const [unlocked, setUnlocked] = useState(
+    persistentAccess || unlockedInThisTab,
+  );
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -37,15 +41,6 @@ export function AccessBoundary({ children }: { children: React.ReactNode }) {
 
       unlockedInThisTab = true;
       setUnlocked(true);
-
-      if (pathname === "/enter") {
-        const requestedPath = new URLSearchParams(window.location.search).get("next");
-        const safePath = requestedPath?.startsWith("/") && !requestedPath.startsWith("//")
-          ? requestedPath
-          : "/";
-        router.replace(safePath);
-      }
-      router.refresh();
     } catch {
       setError("Unable to connect. Please try again.");
     } finally {
