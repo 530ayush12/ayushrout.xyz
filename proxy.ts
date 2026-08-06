@@ -1,38 +1,34 @@
 import { NextRequest, NextResponse } from "next/server";
-import { AUTH_COOKIE, verifyAuthToken } from "@/lib/site-auth";
-
-const PUBLIC_PATHS = new Set(["/enter", "/api/auth"]);
+import {
+  AUTH_COOKIE,
+  AUTH_MAX_AGE,
+  createAuthToken,
+  isAuthConfigured,
+} from "@/lib/site-auth";
 
 export async function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-
-  if (PUBLIC_PATHS.has(pathname)) {
-    if (pathname === "/enter") {
-      const authenticated = await verifyAuthToken(
-        request.cookies.get(AUTH_COOKIE)?.value,
-      );
-      if (authenticated) {
-        return NextResponse.redirect(new URL("/", request.url));
-      }
-    }
-    return NextResponse.next();
+  if (!isAuthConfigured()) {
+    return new NextResponse("Authentication is not configured.", { status: 500 });
   }
 
-  const authenticated = await verifyAuthToken(
-    request.cookies.get(AUTH_COOKIE)?.value,
-  );
+  const destination = request.nextUrl.clone();
+  destination.pathname = "/";
+  destination.search = "";
 
-  if (!authenticated) {
-    const enterUrl = new URL("/enter", request.url);
-    enterUrl.searchParams.set("next", `${pathname}${request.nextUrl.search}`);
-    return NextResponse.redirect(enterUrl);
-  }
+  const response = NextResponse.redirect(destination);
+  response.cookies.set({
+    name: AUTH_COOKIE,
+    value: await createAuthToken(),
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+    path: "/",
+    maxAge: AUTH_MAX_AGE,
+  });
 
-  return NextResponse.next();
+  return response;
 }
 
 export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
-  ],
+  matcher: ["/enter"],
 };
