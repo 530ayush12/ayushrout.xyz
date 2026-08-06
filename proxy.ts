@@ -12,7 +12,7 @@ export async function proxy(request: NextRequest) {
   }
 
   const destination = request.nextUrl.clone();
-  destination.pathname = "/";
+  destination.pathname = "/home";
   destination.search = "";
 
   const response = NextResponse.redirect(destination);
