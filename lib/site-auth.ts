@@ -1,6 +1,6 @@
 const encoder = new TextEncoder();
 
-export const AUTH_COOKIE = "ayush_portfolio_auth";
+export const AUTH_COOKIE = "ayush_portfolio_hackathon_access";
 export const AUTH_MAX_AGE = 60 * 60 * 24 * 7;
 
 function toHex(buffer: ArrayBuffer) {
@@ -14,7 +14,7 @@ function getSecret() {
 }
 
 export function getSitePassword() {
-  return process.env.SITE_PASSWORD ?? "a";
+  return process.env.SITE_PASSWORD ?? "dev";
 }
 
 export function isAuthConfigured() {
