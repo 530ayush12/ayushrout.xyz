@@ -1,7 +1,7 @@
 const encoder = new TextEncoder();
 
 export const AUTH_COOKIE = "ayush_portfolio_hackathon_access";
-export const AUTH_MAX_AGE = 60 * 60 * 24 * 7;
+export const AUTH_MAX_AGE = 60 * 60 * 24 * 30;
 
 function toHex(buffer: ArrayBuffer) {
   return Array.from(new Uint8Array(buffer))
