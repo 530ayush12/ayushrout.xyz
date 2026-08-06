@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
+import { cookies } from "next/headers";
 import { Newsreader, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { AccessBoundary } from "@/components/access-boundary";
 import SpotifyPlayer from "@/app/components/SpotifyPlayer";
 import { ScrollScene } from "@/components/scroll-scene";
+import { AUTH_COOKIE, verifyAuthToken } from "@/lib/site-auth";
 import "./globals.css";
 
 const newsreader = Newsreader({
@@ -54,11 +56,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const cookieStore = await cookies();
+  const persistentAccess = await verifyAuthToken(
+    cookieStore.get(AUTH_COOKIE)?.value,
+  );
+
   return (
     <html lang="en" className={`${newsreader.variable} ${jetbrainsMono.variable}`} data-scroll-behavior="smooth" suppressHydrationWarning>
       <body>
-        <AccessBoundary>
+        <AccessBoundary persistentAccess={persistentAccess}>
           {children}
           <ScrollScene />
           <SpotifyPlayer />
