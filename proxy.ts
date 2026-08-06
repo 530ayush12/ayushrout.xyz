@@ -10,10 +10,10 @@ function cookieDomain() {
   return process.env.NODE_ENV === "production" ? ".ayushrout.xyz" : undefined;
 }
 
-function redirectToHome(request: NextRequest) {
+function redirectToHome(request: NextRequest, accessGranted = false) {
   const destination = request.nextUrl.clone();
   destination.pathname = "/home";
-  destination.search = "";
+  destination.search = accessGranted ? "?access=hackathon" : "";
   return destination;
 }
 
@@ -28,7 +28,6 @@ function clearAccessCookie(response: NextResponse) {
     maxAge: 0,
   };
 
-  // Clear both the new shared-domain cookie and any older host-only cookie.
   response.cookies.set(baseCookie);
   if (process.env.NODE_ENV === "production") {
     response.cookies.set({ ...baseCookie, domain: ".ayushrout.xyz" });
@@ -47,7 +46,7 @@ export async function proxy(request: NextRequest) {
       return new NextResponse("Authentication is not configured.", { status: 500 });
     }
 
-    const response = NextResponse.redirect(redirectToHome(request));
+    const response = NextResponse.redirect(redirectToHome(request, true));
     clearAccessCookie(response);
     response.cookies.set({
       name: AUTH_COOKIE,
