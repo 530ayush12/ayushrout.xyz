@@ -1,10 +1,13 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 import styles from "@/app/enter/enter.module.css";
 
-// Normal password access intentionally lasts only for client-side navigation
-// in the current tab. Refreshing resets this value and shows the gateway again.
+const HACKATHON_SESSION_KEY = "ayush-hackathon-access";
+
+// Normal password access lasts only during client-side navigation in this tab.
+// Refreshing returns a regular visitor to the password gateway.
 let unlockedInThisTab = false;
 
 export function AccessBoundary({
@@ -14,12 +17,48 @@ export function AccessBoundary({
   children: React.ReactNode;
   persistentAccess?: boolean;
 }) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [unlocked, setUnlocked] = useState(
-    persistentAccess || unlockedInThisTab,
-  );
+  const [ready, setReady] = useState(false);
+  const [unlocked, setUnlocked] = useState(unlockedInThisTab);
+
+  useEffect(() => {
+    const enteredThroughBypass = searchParams.get("access") === "hackathon";
+    const navigationEntry = performance.getEntriesByType(
+      "navigation",
+    )[0] as PerformanceNavigationTiming | undefined;
+    const navigationType = navigationEntry?.type ?? "navigate";
+    const savedHackathonSession =
+      sessionStorage.getItem(HACKATHON_SESSION_KEY) === "granted";
+
+    if (enteredThroughBypass && persistentAccess) {
+      sessionStorage.setItem(HACKATHON_SESSION_KEY, "granted");
+      window.history.replaceState({}, "", pathname);
+      setUnlocked(true);
+      setReady(true);
+      return;
+    }
+
+    // Typing /home directly should always present the normal gateway.
+    // A refresh after entering through /enter remains unlocked.
+    if (pathname === "/home" && navigationType === "navigate") {
+      sessionStorage.removeItem(HACKATHON_SESSION_KEY);
+      setUnlocked(unlockedInThisTab);
+      setReady(true);
+      return;
+    }
+
+    if (persistentAccess && savedHackathonSession) {
+      setUnlocked(true);
+    } else {
+      setUnlocked(unlockedInThisTab);
+    }
+
+    setReady(true);
+  }, [pathname, persistentAccess, searchParams]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -32,7 +71,9 @@ export function AccessBoundary({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
       });
-      const result = (await response.json().catch(() => ({}))) as { error?: string };
+      const result = (await response.json().catch(() => ({}))) as {
+        error?: string;
+      };
 
       if (!response.ok) {
         setError(result.error ?? "Unable to unlock the site.");
@@ -48,6 +89,7 @@ export function AccessBoundary({
     }
   }
 
+  if (!ready) return null;
   if (unlocked) return children;
 
   return (
@@ -60,7 +102,9 @@ export function AccessBoundary({
         <p className="eyebrow">Password required</p>
         <h1>Enter the portfolio.</h1>
         <form onSubmit={handleSubmit} className={styles.form}>
-          <label htmlFor="site-password" className={styles.srOnly}>Password</label>
+          <label htmlFor="site-password" className={styles.srOnly}>
+            Password
+          </label>
           <input
             id="site-password"
             type="password"
@@ -74,7 +118,9 @@ export function AccessBoundary({
           <button type="submit" disabled={loading}>
             {loading ? "Checking…" : "Enter"}
           </button>
-          <p className={styles.error} role="alert" aria-live="polite">{error}</p>
+          <p className={styles.error} role="alert" aria-live="polite">
+            {error}
+          </p>
         </form>
       </section>
     </main>
