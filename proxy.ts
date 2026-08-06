@@ -17,6 +17,24 @@ function redirectToHome(request: NextRequest) {
   return destination;
 }
 
+function clearAccessCookie(response: NextResponse) {
+  const baseCookie = {
+    name: AUTH_COOKIE,
+    value: "",
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict" as const,
+    path: "/",
+    maxAge: 0,
+  };
+
+  // Clear both the new shared-domain cookie and any older host-only cookie.
+  response.cookies.set(baseCookie);
+  if (process.env.NODE_ENV === "production") {
+    response.cookies.set({ ...baseCookie, domain: ".ayushrout.xyz" });
+  }
+}
+
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -30,6 +48,7 @@ export async function proxy(request: NextRequest) {
     }
 
     const response = NextResponse.redirect(redirectToHome(request));
+    clearAccessCookie(response);
     response.cookies.set({
       name: AUTH_COOKIE,
       value: await createAuthToken(),
@@ -45,16 +64,7 @@ export async function proxy(request: NextRequest) {
 
   if (pathname === "/lock") {
     const response = NextResponse.redirect(redirectToHome(request));
-    response.cookies.set({
-      name: AUTH_COOKIE,
-      value: "",
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      path: "/",
-      domain: cookieDomain(),
-      maxAge: 0,
-    });
+    clearAccessCookie(response);
     return response;
   }
 
