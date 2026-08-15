@@ -1,14 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import {
-  AUTH_COOKIE,
-  AUTH_MAX_AGE,
-  createAuthToken,
-  isAuthConfigured,
-} from "@/lib/site-auth";
-
-function cookieDomain() {
-  return process.env.NODE_ENV === "production" ? ".ayushrout.xyz" : undefined;
-}
+import { AUTH_COOKIE } from "@/lib/site-auth";
 
 function redirectToHome(request: NextRequest, accessGranted = false) {
   const destination = request.nextUrl.clone();
@@ -42,22 +33,10 @@ export async function proxy(request: NextRequest) {
   }
 
   if (pathname === "/enter") {
-    if (!isAuthConfigured()) {
-      return new NextResponse("Authentication is not configured.", { status: 500 });
-    }
-
+    // /enter grants access only for the current browser-tab session.
+    // Do not create a persistent auth cookie here.
     const response = NextResponse.redirect(redirectToHome(request, true));
     clearAccessCookie(response);
-    response.cookies.set({
-      name: AUTH_COOKIE,
-      value: await createAuthToken(),
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      path: "/",
-      domain: cookieDomain(),
-      maxAge: AUTH_MAX_AGE,
-    });
     return response;
   }
 
