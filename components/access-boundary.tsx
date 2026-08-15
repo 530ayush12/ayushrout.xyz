@@ -4,15 +4,10 @@ import { FormEvent, useEffect, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import styles from "@/app/enter/enter.module.css";
 
-const HACKATHON_SESSION_KEY = "ayush-hackathon-access";
-
-// Normal password access lasts only during client-side navigation in this tab.
-// Access granted through /enter persists across direct navigation and refreshes.
-let unlockedInThisTab = false;
+const SESSION_ACCESS_KEY = "ayush-session-access";
 
 export function AccessBoundary({
   children,
-  persistentAccess = false,
 }: {
   children: React.ReactNode;
   persistentAccess?: boolean;
@@ -23,29 +18,23 @@ export function AccessBoundary({
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [ready, setReady] = useState(false);
-  const [unlocked, setUnlocked] = useState(unlockedInThisTab);
+  const [unlocked, setUnlocked] = useState(false);
 
   useEffect(() => {
     const enteredThroughBypass = searchParams.get("access") === "hackathon";
-    const savedHackathonSession =
-      sessionStorage.getItem(HACKATHON_SESSION_KEY) === "granted";
+    const savedSession = sessionStorage.getItem(SESSION_ACCESS_KEY) === "granted";
 
-    if (enteredThroughBypass && persistentAccess) {
-      sessionStorage.setItem(HACKATHON_SESSION_KEY, "granted");
+    if (enteredThroughBypass) {
+      sessionStorage.setItem(SESSION_ACCESS_KEY, "granted");
       window.history.replaceState({}, "", pathname);
       setUnlocked(true);
       setReady(true);
       return;
     }
 
-    if (persistentAccess && savedHackathonSession) {
-      setUnlocked(true);
-    } else {
-      setUnlocked(unlockedInThisTab);
-    }
-
+    setUnlocked(savedSession);
     setReady(true);
-  }, [pathname, persistentAccess, searchParams]);
+  }, [pathname, searchParams]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -67,7 +56,7 @@ export function AccessBoundary({
         return;
       }
 
-      unlockedInThisTab = true;
+      sessionStorage.setItem(SESSION_ACCESS_KEY, "granted");
       setUnlocked(true);
     } catch {
       setError("Unable to connect. Please try again.");
