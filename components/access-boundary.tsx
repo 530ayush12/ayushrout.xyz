@@ -7,7 +7,7 @@ import styles from "@/app/enter/enter.module.css";
 const HACKATHON_SESSION_KEY = "ayush-hackathon-access";
 
 // Normal password access lasts only during client-side navigation in this tab.
-// Refreshing returns a regular visitor to the password gateway.
+// Access granted through /enter persists across direct navigation and refreshes.
 let unlockedInThisTab = false;
 
 export function AccessBoundary({
@@ -27,10 +27,6 @@ export function AccessBoundary({
 
   useEffect(() => {
     const enteredThroughBypass = searchParams.get("access") === "hackathon";
-    const navigationEntry = performance.getEntriesByType(
-      "navigation",
-    )[0] as PerformanceNavigationTiming | undefined;
-    const navigationType = navigationEntry?.type ?? "navigate";
     const savedHackathonSession =
       sessionStorage.getItem(HACKATHON_SESSION_KEY) === "granted";
 
@@ -38,15 +34,6 @@ export function AccessBoundary({
       sessionStorage.setItem(HACKATHON_SESSION_KEY, "granted");
       window.history.replaceState({}, "", pathname);
       setUnlocked(true);
-      setReady(true);
-      return;
-    }
-
-    // Typing /home directly should always present the normal gateway.
-    // A refresh after entering through /enter remains unlocked.
-    if (pathname === "/home" && navigationType === "navigate") {
-      sessionStorage.removeItem(HACKATHON_SESSION_KEY);
-      setUnlocked(unlockedInThisTab);
       setReady(true);
       return;
     }
