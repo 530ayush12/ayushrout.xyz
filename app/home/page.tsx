@@ -5,6 +5,14 @@ import Link from "next/link";
 
 const projects = [
   {
+    name: "Meritwise",
+    label: "web · product studio",
+    description: "A curated home for my iOS apps, product stories, and writing across education, technology, and well-being.",
+    links: [
+      { label: "Website", href: "https://meritwise.xyz" },
+    ],
+  },
+  {
     name: "GeniusMath AI",
     label: "iOS · education",
     description: "AI-generated math practice with adjustable difficulty, custom quiz lengths, instant scoring, and step-by-step explanations.",
